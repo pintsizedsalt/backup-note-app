@@ -6,7 +6,7 @@
     <title>Note</title>
 </head>
 <body>
-<h1>welcome</h1>
+<h1>MY NOTE</h1>
 
     <div>Title: {{$note->title}}</div>
     <div>Description: {{$note->description}}</div>

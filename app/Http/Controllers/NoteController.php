@@ -4,13 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use Illuminate\Support\Facades\Log;
 
 class NoteController extends Controller
 {
-    public function showAll()
+    public function showAll(Request $request)
     {
-        $notes = Note::orderBy('updated_at', 'asc')->get();
-        return view('notes', ['notes'=> $notes]);
+        $search = $request->input('search', '');
+
+        $query = Note::query();
+
+        if ($search)
+        {
+            $query -> where('title', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhere('content', 'LIKE', "%$search%")
+            ->get();
+
+        }
+        
+        $notes = $query->get();
+        
+
+        return view('notes', ['notes' => $notes, 'search' => $search]);
     }
 
     public function createNote()
@@ -24,6 +40,7 @@ class NoteController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'content' => 'required|string|max:2000'
+            
 
         ]);
 
@@ -76,4 +93,18 @@ class NoteController extends Controller
         return redirect()->route('showAll')->with('success', 'Note deleted succesfully');
 
     }
+
+    //changes
+   
+    
+    // {
+    //     $search = $request->input('search');
+    //     $notes = Note::where('title','LIKE', "%{$search}%")->get();
+        
+    //     Log::info('Notes found: ', ['notes' => $notes]);
+
+    //    
+
+    // }
+
 }

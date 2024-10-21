@@ -19,7 +19,11 @@ Route::put('/notes/{id}/update', [NoteController::class, 'updateNote'])->name('u
  
 Route::delete('/notes/{id}/delete', [NoteController::class, 'deleteNote'])->name('deleteNote');
 
+//changes
+Route::get('/notes/search',[NoteController::class, 'searchNote'])->name('searchNote');
+
 //Requirements
+//Note Resource, User Resource
 
 //Note Model
 //Title
@@ -35,3 +39,8 @@ Route::delete('/notes/{id}/delete', [NoteController::class, 'deleteNote'])->name
 //editNote = Update
 //updateNote = Update
 //deleteNote = Delete
+
+//User Model
+// name
+// email
+// birthday

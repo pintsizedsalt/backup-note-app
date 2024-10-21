@@ -26,5 +26,10 @@
         <button type="submit"> Create Note</button>
 
     </form>
+
+    <form action="{{ route('showAll') }}" method="GET">
+        <button type="submit">Back to Notes</button>
+    </form> 
+    
 </body>
 </html>
