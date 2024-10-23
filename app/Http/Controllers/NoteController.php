@@ -11,14 +11,12 @@ class NoteController extends Controller
     public function showAll(Request $request)
     {
         $search = $request->input('search', '');
-<<<<<<< HEAD
         $query = Note::query();
         if ($search)
         {
             $query -> where('title', 'LIKE', "%$search%")
             ->orWhere('content', 'LIKE', "%$search%")
             ->get();
-=======
 
         $query = Note::query();
 
@@ -28,18 +26,13 @@ class NoteController extends Controller
             ->orWhere('description', 'LIKE', "%$search%")
             ->orWhere('content', 'LIKE', "%$search%")
             ->get();
-
->>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         }
         
         $notes = $query->get();
         
-<<<<<<< HEAD
-=======
-
->>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         return view('notes', ['notes' => $notes, 'search' => $search]);
     }
+}
 
     public function createNote()
     {
@@ -50,14 +43,7 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-<<<<<<< HEAD
             'content' => 'required|string|max:10000'
-=======
-            'description' => 'required|string|max:255',
-            'content' => 'required|string|max:2000'
-            
-
->>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         ]);
 
         $note = new Note();

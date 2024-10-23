@@ -19,10 +19,6 @@ Route::put('/notes/{id}/update', [NoteController::class, 'updateNote'])->name('u
  
 Route::delete('/notes/{id}/delete', [NoteController::class, 'deleteNote'])->name('deleteNote');
 
-<<<<<<< HEAD
-=======
-//changes
->>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
 Route::get('/notes/search',[NoteController::class, 'searchNote'])->name('searchNote');
 
 //Requirements
