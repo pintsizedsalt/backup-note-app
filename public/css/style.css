@@ -1,0 +1,212 @@
+html, body {
+    height: 100%; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: 'Lexend';
+    background: linear-gradient(135deg, #C9DCE9, #96B7D6);
+    background-size: cover;
+    color: #001842;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #0C3C80;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.input-title, 
+textarea {
+    background-color: #C9DCE9; 
+    color: #001842;
+    width: 300px; 
+    max-width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 15px; 
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #000000; 
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+.btn {
+    background-color: #2A63AB;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; 
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #0C3C80;
+    transform: scale(1.05); 
+}
+
+.note {
+    background-color: #96B7D6; 
+    color: #001842;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 30px;
+    transition: transform 0.3s; 
+}
+.note a {
+    color: #0C3C80; 
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+
+.note:hover {
+    color: #63d0fb;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease; 
+}
+
+.note-title {
+    font-weight: bold; 
+    font-size: 1.2em;
+    color: #000; 
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    margin-left: 10px;
+}
+
+.note-content {
+    margin-left: 10px;
+    color: #000; 
+}
+
+form {
+    margin: 0; 
+    border: none; 
+}
+
+.btn {
+    display: inline-block; 
+    padding: 10px 20px; 
+    background-color: #2A63AB;
+    color: #fff; 
+    border: none;
+    border-radius: 5px; 
+    text-align: center;
+    text-decoration: none; 
+    font-family: 'Lexend';
+    font-size: 16px; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.btn:hover {
+    background-color: #0C3C80;
+    transform: scale(1.05); 
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+}
+
+.button-group a {
+    margin-left: 10px; 
+}
+
+.button-group form {
+    margin-right: 10px;
+}
+
+.button-group form:last-child {
+    margin-right: 0; 
+}
+
+.create-note-form {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+@media (max-width: 600px) {
+    .btn {
+        width: 100%; 
+        font-size: 18px; 
+    }
+}
+
+@media (max-width: 600px) {
+    .input-title,
+    textarea {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .btn {
+        width: 100%; 
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    .form-group {
+        margin-right: 0; 
+    }
+
+    .note {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        padding: 15px; 
+    }
+
+    .input-title,
+    textarea {
+        width: 95%;
+    }
+
+    .btn {
+        width: auto; 
+    }
+
+    .note {
+        margin: 15px 0; 
+    }
+}

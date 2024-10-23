@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use Illuminate\Support\Facades\Log;
 
 class NoteController extends Controller
 {
-    public function showAll()
+    public function showAll(Request $request)
     {
-        $notes = Note::orderBy('updated_at', 'asc')->get();
-        return view('notes', ['notes'=> $notes]);
+        $search = $request->input('search', '');
+        $query = Note::query();
+        if ($search)
+        {
+            $query -> where('title', 'LIKE', "%$search%")
+            ->orWhere('content', 'LIKE', "%$search%")
+            ->get();
+        }
+        
+        $notes = $query->get();
+        
+        return view('notes', ['notes' => $notes, 'search' => $search]);
     }
 
     public function createNote()
@@ -22,30 +33,36 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'content' => 'required|string|max:2000'
-
+            'content' => 'required|string|max:10000'
         ]);
 
         $note = new Note();
         $note->title = $validated['title'];
-        $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();
 
-        return redirect()->route('showAll')->with('success', 'Note created succesfully');
-
+        return redirect()->route('showAll')->with('success', 'Note created successfully');
     }
 
     public function showNote(Request $request)
     {
         $note = Note::find($request->id);
+
+        if (!$note) {
+            return redirect()->route('showAll')->with('error', 'Note not found.');
+        }
+
         return view('note', ['note' => $note]);
     }
 
     public function editNote(Request $request)
     {
         $note = Note::find($request->id);
+
+        if (!$note) {
+            return redirect()->route('showAll')->with('error', 'Note not found.');
+        }
+
         return view('edit-note', ['note' => $note]);
     }
 
@@ -53,27 +70,29 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'content' => 'required|string|max:2000'
-
+            'content' => 'required|string|max:10000'
         ]);
 
         $note = Note::find($request->id);
+
+        if (!$note) {
+            return redirect()->route('showAll')->with('error', 'Note not found.');
+        }
+
         $note->title = $validated['title'];
-        $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();
 
-        return redirect()->route('showNote', ['id' => $note->id])->with('success', 'Note updated succesfully');
-
+        return redirect()->route('showNote', ['id' => $note->id])->with('success', 'Note updated successfully');
     }
 
     public function deleteNote(Request $request)
     {
         $note = Note::find($request->id);
+        if (!$note) {
+            return redirect()->route('showAll')->with('error', 'Note not found.');
+        }
         $note->delete();
-
-        return redirect()->route('showAll')->with('success', 'Note deleted succesfully');
-
+        return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
 }
