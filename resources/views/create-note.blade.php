@@ -36,5 +36,30 @@
         </form>
     </div>
 
+<<<<<<< HEAD
+=======
+    <form action="{{ route('storeNote')}}" method="POST"> 
+        @method("POST")
+        @csrf 
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" required>
+        <br>
+        <label for="content">Content</label>
+        <input type="text" id="content" name="content" required>
+        <br>
+    
+
+        <button type="submit"> Create Note</button>
+
+    </form>
+
+    <form action="{{ route('showAll') }}" method="GET">
+        <button type="submit">Back to Notes</button>
+    </form> 
+    
+>>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
 </body>
 </html>

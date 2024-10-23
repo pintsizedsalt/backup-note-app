@@ -8,8 +8,32 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="container">
         <h1>MY NOTES</h1>
+=======
+    <h1>MY NOTES</h1>
+
+    <div>
+        <div class="row m-2">
+            <form action="">
+              <div>
+                <input type="search" name="search" id="title" placeholder="search" value="{{$search}}">
+                <button class="btn btn-primary"> search here </button>
+                <a href="{{url('/notes')}}">
+                <button class="btn btn-primary" type="button"> reset  </button>
+                </a>
+              </div>
+            </form>
+        </div>
+
+      
+    </div>
+  
+
+
+
+>>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
 
         <div class="row m-2">
             <form action="" method="GET">

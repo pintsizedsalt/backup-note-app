@@ -4,22 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use Illuminate\Support\Facades\Log;
 
 class NoteController extends Controller
 {
     public function showAll(Request $request)
     {
         $search = $request->input('search', '');
+<<<<<<< HEAD
         $query = Note::query();
         if ($search)
         {
             $query -> where('title', 'LIKE', "%$search%")
             ->orWhere('content', 'LIKE', "%$search%")
             ->get();
+=======
+
+        $query = Note::query();
+
+        if ($search)
+        {
+            $query -> where('title', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhere('content', 'LIKE', "%$search%")
+            ->get();
+
+>>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         }
         
         $notes = $query->get();
         
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         return view('notes', ['notes' => $notes, 'search' => $search]);
     }
 
@@ -32,7 +50,14 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+<<<<<<< HEAD
             'content' => 'required|string|max:10000'
+=======
+            'description' => 'required|string|max:255',
+            'content' => 'required|string|max:2000'
+            
+
+>>>>>>> 38fdfe8373bcf8853b9644a837d68613e1584da3
         ]);
 
         $note = new Note();
@@ -94,4 +119,18 @@ class NoteController extends Controller
         $note->delete();
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
+
+    //changes
+   
+    
+    // {
+    //     $search = $request->input('search');
+    //     $notes = Note::where('title','LIKE', "%{$search}%")->get();
+        
+    //     Log::info('Notes found: ', ['notes' => $notes]);
+
+    //    
+
+    // }
+
 }
