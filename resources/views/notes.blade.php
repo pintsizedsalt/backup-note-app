@@ -8,35 +8,16 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-
     <div class="container">
         <h1>MY NOTES</h1>
 
-    <h1>MY NOTES</h1>
-
-    <div>
-        <div class="row m-2">
-            <form action="">
-              <div>
-                <input type="search" name="search" id="title" placeholder="search" value="{{$search}}">
-                <button class="btn btn-primary"> search here </button>
-                <a href="{{url('/notes')}}">
-                <button class="btn btn-primary" type="button"> reset  </button>
-                </a>
-              </div>
-            </form>
-        </div>
-
-      
-    </div>
-
         <div class="row m-2">
             <form action="" method="GET">
-              <div class="create-note-form">
+              <div class="form-group">
                 <input type="search" name="search" id="title" placeholder="search..." value="{{ $search }}"required class="input-title" style="margin-right: 2px;">
               </div>
               <div class="button-group">
-                <button class="btn" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit">Search</button>
 
                 @if(!empty($search))
                     <a href="{{ url('/notes') }}">

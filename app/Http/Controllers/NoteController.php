@@ -11,12 +11,6 @@ class NoteController extends Controller
     public function showAll(Request $request)
     {
         $search = $request->input('search', '');
-        $query = Note::query();
-        if ($search)
-        {
-            $query -> where('title', 'LIKE', "%$search%")
-            ->orWhere('content', 'LIKE', "%$search%")
-            ->get();
 
         $query = Note::query();
 
@@ -32,7 +26,7 @@ class NoteController extends Controller
         
         return view('notes', ['notes' => $notes, 'search' => $search]);
     }
-}
+
 
     public function createNote()
     {

@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         .input-title {
-            width: 300px; /* Adjust this value as needed */
-            max-width: 100%; /* Ensures it doesn’t exceed the container */
+            width: 300px;
+            max-width: 100%;
         }
         .form-group {
-            margin-bottom: 15px; /* Adds space between form elements */
+            margin-bottom: 15px; 
         }
     </style>
 </head>
