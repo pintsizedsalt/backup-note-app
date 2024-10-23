@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div class="container">
+<div class="container">
         <h1>Bookmarked Notes</h1>
+
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         @foreach ($notes as $note)
             <div class="note">
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
@@ -18,10 +25,10 @@
                 <hr>
             </div>
         @endforeach
+
         <form action="{{ route('showAll') }}" method="GET" class="create-note-form">
             <button type="submit" class="btn">Back to All Notes</button>
         </form>
     </div>
 </body>
 </html>
-

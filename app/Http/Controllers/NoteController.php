@@ -101,20 +101,27 @@ class NoteController extends Controller
 
     public function toggleBookmark($id)
     {
-        $note = Note::findOrFail($id);
-        $note->is_bookmarked = !$note->is_bookmarked; // Toggle the bookmark status
-        $note->save();
+        $note = Note::find($id);
 
-        return redirect()->back(); // Redirect back to the previous page
+        if ($note) {
+            $note->is_bookmarked = !$note->is_bookmarked; 
+            $note->save();
+
+            $message = $note->is_bookmarked ? 'Note bookmarked!' : 'Note unbookmarked!';
+            session()->flash('status', $message);
+        }
+
+        return redirect()->route('showBookmarkedNotes'); 
     }
 
     public function showBookmarkedNotes()
     {
         $bookmarkedNotes = Note::where('is_bookmarked', true)->get();
-        Log::info('Bookmarked Notes: ', ['notes' => $bookmarkedNotes]);
-        
-        return view('bookmarked-notes', [
-            'notes' => $bookmarkedNotes,
-        ]);
+
+        if ($bookmarkedNotes->isEmpty()) {
+            return "No bookmarked notes found.";
+        }
+
+        return view('bookmarked-notes', ['notes' => $bookmarkedNotes]);
     }
 }

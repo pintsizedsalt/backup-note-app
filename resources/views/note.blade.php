@@ -20,6 +20,7 @@
                 {{ $note->is_bookmarked ? 'Unbookmark' : 'Bookmark' }}
             </button>
         </form>
+
             <form action="{{route('deleteNote', ['id' => $note->id])}}" method="POST" onsubmit="return confirm('Are you sure?')">
                 @method("DELETE")
                 @csrf 

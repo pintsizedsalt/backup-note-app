@@ -16,7 +16,7 @@
             <label for="menu-toggle" class="hamburger-icon">&#9776;</label>
             <div class="menu-content">
                 <a href="{{ route('showAll') }}">My Notes</a>
-                <a href="{{ route('showBookmarkedNotes') }}">Bookmarked Notes</a>
+                <a href="{{ route('showBookmarkedNotes') }}">Bookmarked Notes</a> <!-- Added this link -->
             </div>
         </div>
 
