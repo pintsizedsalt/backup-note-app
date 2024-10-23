@@ -12,11 +12,11 @@
         <h1>MY NOTES</h1>
 
         <div class="hamburger-menu">
-            <input type="checkbox" id="menu-toggle" style="display: none;"> <!-- Hide the checkbox -->
+            <input type="checkbox" id="menu-toggle" style="display: none;">
             <label for="menu-toggle" class="hamburger-icon">&#9776;</label>
             <div class="menu-content">
                 <a href="{{ route('showAll') }}">My Notes</a>
-                <a href="{{ route('showBookmarkedNotes') }}">Bookmarked Notes</a> <!-- Added this link -->
+                <a href="{{ route('showBookmarkedNotes') }}">Bookmarked Notes</a> 
             </div>
         </div>
 

@@ -99,9 +99,9 @@ class NoteController extends Controller
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
 
-    public function toggleBookmark($id)
+    public function toggleBookmark(Request $request)
     {
-        $note = Note::find($id);
+        $note = Note::find($request->id);
 
         if ($note) {
             $note->is_bookmarked = !$note->is_bookmarked; 

@@ -10,12 +10,6 @@
 <div class="container">
         <h1>Bookmarked Notes</h1>
 
-        @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-
         @foreach ($notes as $note)
             <div class="note">
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
