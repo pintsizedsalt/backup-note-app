@@ -125,6 +125,8 @@ textarea:focus {
 }
 
 .note-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
     margin-left: 10px;
     color: #fff; 
 }
@@ -182,6 +184,42 @@ form {
 .create-note-form textarea {
     margin-right: 5px; 
 }
+
+.hamburger-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.hamburger-icon {
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+}
+
+.menu-content {
+    display: none; /* Hide by default */
+    position: absolute; /* Position the menu */
+    background-color: white; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    z-index: 1; /* Ensure it's on top */
+    margin-top: 5px; /* Space between icon and menu */
+}
+
+#menu-toggle:checked + .hamburger-icon + .menu-content {
+    display: block; /* Show the menu when checkbox is checked */
+}
+
+.menu-content a {
+    display: block; /* Stack links */
+    padding: 8px; /* Spacing */
+    text-decoration: none; /* No underline */
+    color: black; /* Link color */
+}
+
+.menu-content a:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+
 
 @media (max-width: 600px) {
     .btn {

@@ -17,7 +17,6 @@ class NoteController extends Controller
         if ($search)
         {
             $query -> where('title', 'LIKE', "%$search%")
-            ->orWhere('description', 'LIKE', "%$search%")
             ->orWhere('content', 'LIKE', "%$search%")
             ->get();
         }
@@ -100,17 +99,22 @@ class NoteController extends Controller
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
 
-    //changes
-   
-    
-    // {
-    //     $search = $request->input('search');
-    //     $notes = Note::where('title','LIKE', "%{$search}%")->get();
+    public function toggleBookmark($id)
+    {
+        $note = Note::findOrFail($id);
+        $note->is_bookmarked = !$note->is_bookmarked; // Toggle the bookmark status
+        $note->save();
+
+        return redirect()->back(); // Redirect back to the previous page
+    }
+
+    public function showBookmarkedNotes()
+    {
+        $bookmarkedNotes = Note::where('is_bookmarked', true)->get();
+        Log::info('Bookmarked Notes: ', ['notes' => $bookmarkedNotes]);
         
-    //     Log::info('Notes found: ', ['notes' => $notes]);
-
-    //    
-
-    // }
-
+        return view('bookmarked-notes', [
+            'notes' => $bookmarkedNotes,
+        ]);
+    }
 }

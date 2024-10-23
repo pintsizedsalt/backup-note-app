@@ -12,8 +12,14 @@
     <h1>MY NOTES</h1>
     <div class="note">
         <div class="note-title">{{$note->title}}</div>
-        <div class="note-content">{{$note->content}}</div>
+        <div class="note-content">{{ $note->content }}</div>
         <div class="button-group">
+        <form action="{{ route('toggleBookmark', ['id' => $note->id]) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn">
+                {{ $note->is_bookmarked ? 'Unbookmark' : 'Bookmark' }}
+            </button>
+        </form>
             <form action="{{route('deleteNote', ['id' => $note->id])}}" method="POST" onsubmit="return confirm('Are you sure?')">
                 @method("DELETE")
                 @csrf 

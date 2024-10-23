@@ -21,6 +21,11 @@ Route::delete('/notes/{id}/delete', [NoteController::class, 'deleteNote'])->name
 
 Route::get('/notes/search',[NoteController::class, 'searchNote'])->name('searchNote');
 
+Route::post('/notes/{id}/toggle-bookmark', [NoteController::class, 'toggleBookmark'])->name('toggleBookmark');
+Route::get('/notes/bookmarked', [NoteController::class, 'showBookmarkedNotes'])->name('showBookmarkedNotes');
+
+
+
 //Requirements
 //Note Resource, User Resource
 
