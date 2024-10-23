@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
-use Illuminate\Support\Facades\Log;
 
 class NoteController extends Controller
 {

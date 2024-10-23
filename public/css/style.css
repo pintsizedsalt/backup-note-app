@@ -5,68 +5,71 @@ html, body {
 }
 
 body {
-    font-family: 'Lexend';
-    background: linear-gradient(135deg, #C9DCE9, #96B7D6);
-    background-size: cover;
-    color: #001842;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    
+    font-family: 'Fira Code', monospace; 
+    background: #1a1a1a; 
+    color: #e0e0e0; 
+    line-height: 1.6; 
 }
 
 .container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #22487a; 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
+h1, h2, h3 {
     text-align: center;
-    color: #0C3C80;
+    color:  #fff;
+}
+
+hr {
+    display: none;
+}
+
+br {
+    display: none;
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
+    color: #fff;
 }
 
 .input-title, 
 textarea {
-    background-color: #C9DCE9; 
-    color: #001842;
-    width: 300px; 
-    max-width: 100%; 
+    background-color: #333; 
+    color: #fff;
+    width: calc(100% - 20px);
+    max-width: 100%;
     padding: 10px; 
-    border: 1px solid #ccc; 
+    border: 1px solid #555; 
     border-radius: 5px; 
     margin-bottom: 15px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s;
+textarea {
+    resize: vertical; 
+    border-color: #fff;
+    max-width: calc(100% - 20px);
 }
 
 input[type="text"]:focus,
 textarea:focus {
-    border-color: #000000; 
+    border-color: #3fa9f5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .form-group {
-    margin-bottom: 15px;
-    margin-right: 20px;
+    text-align: center;
 }
 
 .btn {
-    background-color: #2A63AB;
+    background-color: #007acc;
     color: #FFFFFF;
     padding: 10px 15px;
     border: none;
@@ -77,20 +80,30 @@ textarea:focus {
 }
 
 .btn:hover {
-    background-color: #0C3C80;
+    background-color: #007acc;
     transform: scale(1.05); 
 }
 
 .note {
-    background-color: #96B7D6; 
-    color: #001842;
-    padding: 15px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
     margin: 10px 0;
-    border-radius: 30px;
-    transition: transform 0.3s; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.note::before {
+    content: ''; 
+    display: block;
+    height: 2px;
+    background-color: #fff; 
+    margin: -15px -15px 15px; 
+}
+
 .note a {
-    color: #0C3C80; 
+    color: #3fa9f5;
     text-decoration: none; 
     transition: color 0.3s; 
 }
@@ -98,14 +111,14 @@ textarea:focus {
 .note:hover {
     color: #63d0fb;
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease; 
 }
 
 .note-title {
     font-weight: bold; 
     font-size: 1.2em;
-    color: #000; 
+    color: #fff; 
     margin-top: 5px;
     margin-bottom: 5px; 
     margin-left: 10px;
@@ -113,7 +126,7 @@ textarea:focus {
 
 .note-content {
     margin-left: 10px;
-    color: #000; 
+    color: #fff; 
 }
 
 form {
@@ -123,31 +136,32 @@ form {
 
 .btn {
     display: inline-block; 
-    padding: 10px 20px; 
-    background-color: #2A63AB;
+    padding: 10px 15px; 
+    background-color: #2a6199;
     color: #fff; 
     border: none;
     border-radius: 5px; 
     text-align: center;
     text-decoration: none; 
-    font-family: 'Lexend';
     font-size: 16px; 
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .btn:hover {
-    background-color: #0C3C80;
+    background-color: #3fa9f5; 
     transform: scale(1.05); 
 }
 
 .button-group {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 5px;
     margin-top: 10px; 
 }
 
 .button-group a {
-    margin-left: 10px; 
+    margin-left: 0; 
 }
 
 .button-group form {
@@ -159,8 +173,14 @@ form {
 }
 
 .create-note-form {
-    text-align: center; 
-    margin-top: 20px; 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+.create-note-form .input-title,
+.create-note-form textarea {
+    margin-right: 5px; 
 }
 
 @media (max-width: 600px) {
@@ -180,11 +200,15 @@ form {
     .btn {
         width: 100%; 
         margin-top: 10px;
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .form-group {
         margin-right: 0; 
+    }
+
+    .form-group input {
+        width: 100%;
     }
 
     .note {

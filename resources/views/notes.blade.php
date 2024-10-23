@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
@@ -13,11 +13,11 @@
 
         <div class="row m-2">
             <form action="" method="GET">
-              <div class="form-group">
-                <input type="search" name="search" id="title" placeholder="search" value="{{ $search }}">
+              <div class="create-note-form">
+                <input type="search" name="search" id="title" placeholder="search..." value="{{ $search }}"required class="input-title" style="margin-right: 2px;">
               </div>
               <div class="button-group">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn" type="submit">Search</button>
 
                 @if(!empty($search))
                     <a href="{{ url('/notes') }}">
