@@ -52,7 +52,7 @@
 
                     <div>
                         @foreach ($notes as $note)
-                            <div class="note">
+                            <div class="note" data-note-id="{{ $note->id }}">
                                 <label>
                                     <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
                                     <div class="note-title">{{ $note->title }}</div>
@@ -100,6 +100,42 @@
                         }
                     });
                 });
+            });
+
+            restoreForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+                const selectedNotes = Array.from(checkboxes).filter(cb => cb.checked);
+                selectedNotes.forEach(checkbox => {
+                    const noteDiv = checkbox.closest('.note');
+                    const noteId = noteDiv.dataset.noteId;
+                    
+                    // Here you would typically send a request to the server to restore the note.
+                    // For demonstration, we'll simply remove it from the DOM.
+                    if (noteId) {
+                        // Simulate the restoration process
+                        fetch(`{{ route('restoreSelectedNotes') }}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ note_ids: [noteId] })
+                        }).then(response => {
+                            // If the note is successfully restored, remove it from the DOM
+                            if (response.ok) {
+                                noteDiv.remove(); // Remove the restored note from the DOM
+                            } else {
+                                alert('Error restoring the note. Please try again.');
+                            }
+                        });
+                    }
+                });
+
+                // Clear checkboxes and hide buttons
+                selectedNotes.forEach(cb => cb.checked = false);
+                deleteButton.style.display = 'none';
+                restoreButton.style.display = 'none';
+                restoreContainer.innerHTML = '';
             });
         </script>
     </div>

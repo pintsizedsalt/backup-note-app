@@ -49,7 +49,7 @@
                     <button type="submit" class="btn">Edit</button>
                 </form>
                 
-                <a href="{{ route('showAll') }}" class="btn-back">Cancel</a>
+                <a href="{{ route('showAll') }}" class="btn">Back</a>
             </div>
         </div>
     </div>

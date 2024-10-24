@@ -6,7 +6,7 @@ html, body {
 
 body {
     font-family: 'Roboto', sans-serif; 
-    background: #ffdfe4;
+    background: linear-gradient(135deg,#b3e5fc,#fddaff);
     color: #333; 
     line-height: 1.6; 
     margin: 0;
@@ -169,16 +169,17 @@ form {
 }
 
 .btn:hover {
-    background-color: #c2185b; 
+    background-color: #ffb4d2; 
     transform: scale(1.05); 
 }
 
 .btn-back {
-    background-color:  #ffffff; 
-    color: #3fa9f5;
-    padding: 10px 20px;
+    background-color: #0288d1; 
+    color: #ffffff;
+    padding: 15px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
@@ -188,7 +189,7 @@ form {
 }
 
 .btn-back:hover {
-    background-color: #f0f0f0;  
+    background-color: #ffb4d2;  
     transform: scale(1.05); 
 }
 
@@ -203,7 +204,6 @@ form {
     gap: 5px;
     margin-top: 10px;
  }
- 
  
  .button-group a {
     margin-left: 0;
@@ -236,6 +236,25 @@ form {
 .create-note-form .input-title,
 .create-note-form textarea {
     margin-right: 5px; 
+}
+
+.create-note-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.create-note-form .btn {
+    background-color: #0288d1;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-note-form .btn:hover {
+    background-color: #ffb4d2; 
 }
 
 .hamburger-menu {
@@ -329,48 +348,30 @@ form {
     color: #3fa9f5;
 }
 
-.close-icon {
-    display: block;
-    font-size: 30px; 
-    color: #3fa9f5;
-    cursor: pointer;
-    margin: 10px;
-    text-align: left; 
-    transition: color 0.3s; 
-}
-
-.close-icon:hover {
-    color: #007acc; 
-}
-
 .nav-link {
     display: block; 
     padding: 10px 5px; 
-    color: #333; 
+    color: #000; 
     text-decoration: none; 
     border-radius: 5px; 
     transition: background-color 0.3s;
 }
 
 .nav-link:hover {
-    background-color: #03a9f4; 
-    color: #ffffff;
+    background-color: #ffb4d2;  
+    color: #000;
 }
 
 .nav-link.active {
-    background-color: #007acc;
-    color: #ffffff; 
+    background-color: #66c2ff;
+    color: #000; 
 }
 
-.trash-bin .note {
-    padding: 5px; 
-    margin-bottom: 5px; 
-}
-
-.trash-bin .note-title,
-.trash-bin .note-content {
-    padding: 0; 
-    margin: 0; 
+.no-notes {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #666;
 }
 
 .no-notes-message {
@@ -431,6 +432,7 @@ form {
     color: white; 
     border: none; 
     margin-bottom: 15px;
+    margin-right: 30px;
     padding: 10px 20px; 
     border-radius: 5px;
     cursor: pointer;
