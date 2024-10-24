@@ -24,6 +24,13 @@
     </nav>
 
     <div class="container">
+
+            <div class="logo">
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
+                </a>
+            </div>
+            
         <h1>Bookmarks</h1>
 
         @if ($noNotesMessage)

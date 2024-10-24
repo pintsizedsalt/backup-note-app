@@ -25,6 +25,13 @@
     </nav>
     
     <div class="container">
+
+            <div class="logo">
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
+                </a>
+            </div>
+
         <h1>MY NOTES</h1>
 
         <div class="row m-2">

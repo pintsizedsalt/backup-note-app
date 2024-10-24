@@ -33,6 +33,13 @@
             </ul>
         </nav>
     <div class="container">
+
+            <div class="logo">
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
+                </a>
+            </div>
+            
         <h1>Edit Note</h1>
         <form action="{{ route('updateNote', ['id' => $note->id])}}" method="POST"> 
             @method("PUT")

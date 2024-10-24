@@ -25,6 +25,11 @@
     </nav>
 
     <div class="container">
+        <div class="logo">
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
+                </a>
+            </div>
         <h1>Trash Bin</h1>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>

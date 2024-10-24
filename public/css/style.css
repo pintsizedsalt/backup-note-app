@@ -443,6 +443,27 @@ form {
     background-color: #388e3c; 
 }
 
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+.logo-img {
+    width: 60px; /* Set a smaller width */
+    height: 60px; /* Set a smaller height */
+    object-fit: cover; /* Ensure the image scales correctly */
+    transition: transform 0.3s; /* Smooth transition for hover effects */
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05); /* Similar hover effect as the button */
+}
+
 @media (max-width: 600px) {
     .btn {
         width: 100%;
