@@ -28,6 +28,8 @@ Route::get('/notes-trash', [NoteController::class, 'showTrash'])->name('showTras
 Route::delete('/notes-trash/delete', [NoteController::class, 'deleteSelectedNotes'])->name('deleteSelectedNotes');
 Route::delete('/notes-trash/empty', [NoteController::class, 'emptyTrash'])->name('emptyTrash');
 
+Route::post('/notes-trash/restore', [NoteController::class, 'restoreSelectedNotes'])->name('restoreSelectedNotes');
+
 
 //Requirements
 //Note Resource, User Resource

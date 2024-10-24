@@ -49,7 +49,7 @@
                     <button type="submit" class="btn">Edit</button>
                 </form>
                 
-                <a href="{{ url()->previous() }}" class="btn-back">Back</a>
+                <a href="{{ route('showAll') }}" class="btn-back">Cancel</a>
             </div>
         </div>
     </div>

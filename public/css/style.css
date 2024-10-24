@@ -6,26 +6,28 @@ html, body {
 
 body {
     font-family: 'Roboto', sans-serif; 
-    background: #1a1a1a; 
-    color: #e0e0e0; 
+    background: #ffdfe4;
+    color: #333; 
     line-height: 1.6; 
+    margin: 0;
+    padding: 0;
 }
 
 .container {
+    position: relative;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 25px auto;
+    border: 1px solid #ccc;
     padding: 20px;
-    background-color: #22487a; 
+    background-color: #ffffff; 
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    transition: margin-left 0.3s ease;
 }
 
 h1, h2, h3 {
     text-align: center;
-    color: #fff;
-    letter-spacing: 0.5px; 
+    color: #0288d1; /* Soft blue */
 }
 
 hr {
@@ -39,48 +41,54 @@ br {
 label {
     display: block;
     margin: 10px 0 5px;
-    color: #fff;
+    color: #0288d1; /* Soft blue */
 }
 
 .input-title, 
 textarea {
-    background-color: #333; 
-    color: #fff;
+    background-color: #b3e5fc; 
+    color: #333;
     width: calc(100% - 20px);
     max-width: 100%;
     padding: 10px; 
     margin: 10px;
-    border: 1px solid #555; 
+    border: 1px solid #81d4fa; 
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
     transition: border-color 0.3s;
 }
 
 textarea {
-    resize: vertical; 
-    border-color: #fff;
+    width: 100%; /* Full width */
+    padding: 10px; /* Add padding inside the textarea */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    resize: vertical; /* Allow vertical resizing */
+    margin: 0; /* Remove margin to prevent overlap */
     max-width: calc(100% - 20px);
 }
 
 input[type="text"]:focus,
 textarea:focus {
-    border-color: #3fa9f5;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-color: #03a9f4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .note {
     position: relative;
-    background-color: #2b2b2b;
-    border: 1px solid #444;
+    background-color: #ffffff;
+    border: 1px solid #81d4fa;
     margin: 10px 0;
     padding: 15px; 
     cursor: pointer;
     border-radius: 8px; 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -95,7 +103,7 @@ textarea:focus {
     content: ''; 
     display: block;
     height: 2px;
-    background-color: #fff; 
+    background-color: #3fa9f5; 
     margin: -15px -15px 15px; 
     cursor: pointer;
 }
@@ -110,25 +118,22 @@ textarea:focus {
 .note:hover {
     color: #63d0fb;
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease; 
-    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .note-title {
     font-weight: bold; 
     font-size: 1.2em;
-    color: #fff; 
+    color: #000000; 
     margin-top: 5px;
     margin-bottom: 5px; 
-    margin-left: 10px;
 }
 
 .note-content {
     white-space: pre-wrap;
     word-wrap: break-word;
     margin-left: 10px;
-    color: #fff; 
+    color: #333; 
     overflow: hidden; 
     text-overflow: ellipsis; 
     display: -webkit-box; 
@@ -140,7 +145,7 @@ textarea:focus {
     white-space: pre-wrap;
     word-wrap: break-word;
     margin-left: 10px;
-    color: #fff; 
+    color: #333; 
 }
 
 form {
@@ -149,8 +154,8 @@ form {
 }
 
 .btn, .btn:link, .btn:visited {
-    background-color: #fff;
-    color: #007acc;
+    background-color: #0288d1; 
+    color: #ffffff;
     padding: 15px 20px;
     border: none;
     border-radius: 5px;
@@ -164,13 +169,13 @@ form {
 }
 
 .btn:hover {
-    background-color: #fff4bf; 
+    background-color: #c2185b; 
     transform: scale(1.05); 
 }
 
 .btn-back {
     background-color:  #ffffff; 
-    color: #fff;
+    color: #3fa9f5;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -183,8 +188,13 @@ form {
 }
 
 .btn-back:hover {
-    background-color: #fff4bf;  
+    background-color: #f0f0f0;  
     transform: scale(1.05); 
+}
+
+.button-icon {
+    width: 24px; /* Icon size */
+    height: 24px; /* Icon size */
 }
 
 .button-group {
@@ -217,14 +227,10 @@ form {
     position: relative;
 }
 
-.button-group a, .button-group-trash a {
-    margin: 0;
-}
- 
 .create-note-form {
-    display: flex; 
-    justify-content: center; 
-    margin-top: 20px;
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
 }
 
 .create-note-form .input-title,
@@ -268,7 +274,7 @@ form {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #ffffff;
+    background-color: #639ffe; 
     margin: 5px 0;
     transition: 0.3s;
 }
@@ -291,8 +297,8 @@ form {
     left: -250px; 
     width: 250px; 
     height: 100%; 
-    background-color: #f3f4f6; 
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: left 0.3s ease; 
     z-index: 1000; 
     padding-top: 60px; 
@@ -314,40 +320,40 @@ form {
 
 .drawer ul li a {
     text-decoration: none;
-    color: #000000;
+    color: #333;
     font-size: 18px;
+    transition: color 0.3s;
 }
 
-.menu-icon span {
-    background-color: #639ffe; 
+.drawer ul li a:hover {
+    color: #3fa9f5;
 }
 
 .close-icon {
     display: block;
     font-size: 30px; 
-    color: #002d71;
+    color: #3fa9f5;
     cursor: pointer;
     margin: 10px;
     text-align: left; 
     transition: color 0.3s; 
-    position: absolute; 
 }
 
 .close-icon:hover {
-    color: #3b6fd8; 
+    color: #007acc; 
 }
 
 .nav-link {
     display: block; 
     padding: 10px 5px; 
-    color: #e0e0e0; 
+    color: #333; 
     text-decoration: none; 
     border-radius: 5px; 
     transition: background-color 0.3s;
 }
 
 .nav-link:hover {
-    background-color: #3fa9f5; 
+    background-color: #03a9f4; 
     color: #ffffff;
 }
 
@@ -367,31 +373,28 @@ form {
     margin: 0; 
 }
 
-.trash-bin .note-checkbox {
-    margin-right: 5px; 
-}
-
 .no-notes-message {
     text-align: center;
-    background-color: #2b2b2b;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .no-notes-message h2 {
-    color: #ffcc00; 
+    color: #0288d1;
 }
 
 .no-notes-message p {
-    color: #e0e0e0;
+    color: #666;
     margin: 10px 0;
 }
 
 .no-notes-message .btn {
     display: inline-block;
-    background-color: #3fa9f5;
-    color: white;
+    background-color: #0288d1;
+    color: black;
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 5px;
@@ -403,83 +406,77 @@ form {
 }
 
 #delete-selected-button {
-    position: absolute; /* Use absolute positioning */
+    position: absolute;
     top: 0;
-    right: 5px; /* Adjust the right position as needed */
-    background-color: #f44336; /* Red background color */
-    color: white; /* White text color */
+    right: 5px; 
+    background-color: #f44336; 
+    color: white; 
     border: none; 
     margin-bottom: 15px;
-    padding: 10px 20px; /* Add some padding */
-    border-radius: 5px; /* Round the corners */
-    cursor: pointer; /* Change cursor to pointer */
-    display: none; /* Initially hidden */
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    display: none; 
 }
 
-/* Add hover effect */
 #delete-selected-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
+    background-color: #d32f2f; 
 }
 
+#restore-selected-button {
+    position: absolute; 
+    top: 0;
+    right: 70px; 
+    background-color: #4caf50;
+    color: white; 
+    border: none; 
+    margin-bottom: 15px;
+    padding: 10px 20px; 
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; 
+}
+
+#restore-selected-button:hover {
+    background-color: #388e3c; 
+}
 
 @media (max-width: 600px) {
     .btn {
         width: 100%;
         font-size: 18px;
     }
- }
- 
- 
- @media (max-width: 600px) {
+
     .input-title,
     textarea {
         width: 100%;
         padding: 8px;
     }
- 
- 
-    .btn {
-        width: 100%;
-        margin-top: 10px;
-        font-size: 18px;
-    }
- 
- 
-    .form-group {
-        margin-right: 0;
-    }
- 
- 
+
     .form-group input {
         width: 100%;
     }
- 
- 
+
     .note {
         padding: 10px;
     }
- }
- 
- 
- @media (min-width: 601px) and (max-width: 1024px) {
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
     .container {
         padding: 15px;
     }
- 
- 
+
     .input-title,
     textarea {
         width: 95%;
     }
- 
- 
+
     .btn {
         width: auto;
     }
- 
- 
+
     .note {
         margin: 15px 0;
     }
- }
- 
+}

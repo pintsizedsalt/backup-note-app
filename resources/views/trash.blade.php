@@ -40,13 +40,13 @@
             </div>
         @else
             <div class="button-group-trash">
-                <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')">
+                <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn">Empty Trash Bin</button>
                 </form>
 
-                <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')">
+                <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')" style="display: inline;">
                     @csrf
                     @method('DELETE')
 
@@ -63,9 +63,15 @@
                         @endforeach
                     </div>
 
-                    <button type="submit" class="btn button-group-trash" style="display: none;" id="delete-selected-button">
-                        Delete 
-                    </button>
+                    <div class="button-group">
+                        <button type="submit" class="btn" style="display: none;" id="delete-selected-button">Delete</button>
+                    </div>
+                </form>
+
+                <form action="{{ route('restoreSelectedNotes') }}" method="POST" id="restore-selected-form">
+                    @csrf
+                    <div id="restore-notes-container"></div>
+                    <button type="submit" class="btn" style="display: none;" id="restore-selected-button">Restore</button>
                 </form>
             </div>
         @endif
@@ -73,11 +79,26 @@
         <script>
             const checkboxes = document.querySelectorAll('.note-checkbox');
             const deleteButton = document.getElementById('delete-selected-button');
+            const restoreForm = document.getElementById('restore-selected-form');
+            const restoreButton = document.getElementById('restore-selected-button');
+            const restoreContainer = document.getElementById('restore-notes-container');
 
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
-                    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
                     deleteButton.style.display = anyChecked ? 'block' : 'none';
+                    restoreButton.style.display = anyChecked ? 'block' : 'none';
+
+                    restoreContainer.innerHTML = '';
+                    checkboxes.forEach(cb => {
+                        if (cb.checked) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = 'note_ids[]';
+                            input.value = cb.value;
+                            restoreContainer.appendChild(input);
+                        }
+                    });
                 });
             });
         </script>

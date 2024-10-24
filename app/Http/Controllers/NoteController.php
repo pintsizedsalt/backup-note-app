@@ -14,16 +14,16 @@ class NoteController extends Controller
 
         $query = Note::query();
 
-        if ($search)
-        {
-            $query -> where('title', 'LIKE', "%$search%")
-            ->orWhere('content', 'LIKE', "%$search%")
-            ->get();
+        if ($search) {
+            $query->where('title', 'LIKE', "%$search%")
+                ->orWhere('content', 'LIKE', "%$search%");
         }
         
         $notes = $query->get();
         
-        return view('notes', ['notes' => $notes, 'search' => $search]);
+        $noNotesMessage = $notes->isEmpty() ? "No notes found." : null;
+
+        return view('notes', ['notes' => $notes, 'search' => $search, 'noNotesMessage' => $noNotesMessage]);
     }
 
 
@@ -95,9 +95,15 @@ class NoteController extends Controller
         if (!$note) {
             return redirect()->route('showAll')->with('error', 'Note not found.');
         }
+
+        if ($note->is_bookmarked) {
+            Log::info("Deleting a bookmarked note: " . $note->title);
+        }
+
         $note->delete();
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
+
 
     public function toggleBookmark(Request $request)
     {
@@ -149,4 +155,13 @@ class NoteController extends Controller
         Note::onlyTrashed()->forceDelete();
         return redirect()->route('showTrash')->with('success', 'Trash bin emptied.');
     }
+
+    public function restoreSelectedNotes(Request $request)
+    {
+        $noteIds = $request->input('note_ids', []);
+        
+        Note::withTrashed()->whereIn('id', $noteIds)->restore();
+        return redirect()->route('showAll')->with('success', 'Selected notes restored successfully.');
+    }
+
 }

@@ -33,24 +33,23 @@
         </ul>
     </nav>
 
-<div class="container">
-        <h1>Create Note</h1>
-        <form action="{{ route('storeNote')}}" method="POST"> 
-            @csrf 
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required class="input-title" style="margin-right: 2px;">
-            </div>
-            <div class="form-group"> 
-                <label for="content">Content</label>
-                <textarea id="content" name="content" rows="6" required style="width: 100%;"></textarea>
-            </div>
-            <div class="button-group">
+    <div class="container">
+    <h1>Create Note</h1>
+    <form action="{{ route('storeNote')}}" method="POST"> 
+        @csrf 
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required class="input-title">
+        </div>
+        <div class="form-group"> 
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="6" required></textarea>
+        </div>
+        <div class="button-group">
             <button type="submit" class="btn">Create Note</button>
             <a href="{{ url()->previous() }}" class="btn-back">Back</a>
-            </div>
-
-        </form>
+        </div>
+    </form>
     </div>
 
 </body>
