@@ -46,9 +46,10 @@
                 <textarea id="content" name="content" rows="6" required style="width: 100%;"></textarea>
             </div>
             <div class="button-group">
-                <button type="submit" class="btn">Create Note</button>
-                <a href="{{ route('showAll') }}" class="btn">Cancel</a>
+            <button type="submit" class="btn">Create Note</button>
+            <a href="{{ url()->previous() }}" class="btn-back">Back</a>
             </div>
+
         </form>
     </div>
 

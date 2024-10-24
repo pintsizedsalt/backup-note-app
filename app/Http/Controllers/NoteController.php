@@ -119,12 +119,12 @@ class NoteController extends Controller
     {
         $bookmarkedNotes = Note::where('is_bookmarked', true)->get();
 
-        if ($bookmarkedNotes->isEmpty()) {
-            return "No bookmarked notes found.";
-        }
-
-        return view('bookmarked-notes', ['notes' => $bookmarkedNotes]);
+        return view('bookmarked-notes', [
+            'notes' => $bookmarkedNotes,
+            'noNotesMessage' => $bookmarkedNotes->isEmpty() ? "No bookmarked notes found." : null
+        ]);
     }
+
 
     public function showTrash()
     {

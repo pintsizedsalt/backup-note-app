@@ -49,9 +49,7 @@
                     <button type="submit" class="btn">Edit</button>
                 </form>
                 
-                <form action="{{ route('showAll') }}" method="GET">
-                    <button type="submit" class="btn">Back</button>
-                </form>
+                <a href="{{ url()->previous() }}" class="btn-back">Back</a>
             </div>
         </div>
     </div>

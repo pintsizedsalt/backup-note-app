@@ -48,8 +48,9 @@
 
             <button type="submit" class="btn">Save</button>
 
-            <form action="{{ route('showAll') }}" method="GET" style="margin-top: 15px;">
-            <button type="submit" class="btn">Cancel</button>
+            <div class="button-group">
+            <a href="{{ url()->previous() }}" class="btn-back">Back</a>
+            </div>
         </form>
     </div>
 </body>
