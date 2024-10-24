@@ -49,7 +49,8 @@
                     <div style="font-weight: bold; font-size: 20px;">{{$note->title}}</div>
                     <div class="note-content">{{ Str::limit($note->content, 100, '...') }}</div>
                 </a>
-                <div>
+
+        <div>
             <small>Created at: {{ $note->created_at->setTimezone('Asia/Manila')->format('M d, Y || g:i A') }}</small>
         </div>
         <div>
