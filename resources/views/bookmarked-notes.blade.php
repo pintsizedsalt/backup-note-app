@@ -26,9 +26,9 @@
     <div class="container">
         <h1>Bookmarks</h1>
 
-        @if ($notes->isEmpty())
+        @if ($noNotesMessage)
             <div class="no-notes-message">
-                <h2>No Bookmarked Notes Found</h2>
+                <h2>{{ $noNotesMessage }}</h2>
                 <p>It looks like you haven't bookmarked any notes yet. Start exploring your notes and bookmark your favorites!</p>
                 <a href="{{ route('showAll') }}" class="btn">Go to My Notes</a>
             </div>
@@ -43,6 +43,7 @@
                 </div>
             @endforeach
         @endif
+
     </div>
 </body>
 </html>

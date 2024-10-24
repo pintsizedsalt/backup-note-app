@@ -18,7 +18,7 @@
 
     <nav class="drawer">
         <ul>
-        <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
+            <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
             <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link">Bookmarks</a></li>
             <li><a href="{{ route('showTrash') }}" class="nav-link active">Trash Bin</a></li>
         </ul>
@@ -32,34 +32,43 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        <div>
-            @foreach ($notes as $note)
-                <div class="note">
-                    <label>
-                        <input type="checkbox" name="input_id" value="{{ $note->id }}" class="note-checkbox">
-                        <div class="note-title">{{ $note->title }}</div>
-                        <div class="note-content">{{ $note->content }}</div>
-                    </label>
-                    <hr>
-                </div>
-            @endforeach
-        </div>
+        @if ($notes->isEmpty())
+            <div class="no-notes-message">
+                <h2>Your Trash Bin is Empty</h2>
+                <p>It looks like there are no notes in your trash. When you delete notes, they'll appear here for you to restore or permanently delete.</p>
+                <a href="{{ route('showAll') }}" class="btn">Go to My Notes</a>
+            </div>
+        @else
+            <div class="button-group-trash">
+                <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn">Empty Trash Bin</button>
+                </form>
 
-        <div class="button-group-trash">
-        <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn" style="display: none;" id="delete-selected-button">
-                Delete Selected
-            </button>
-        </form>
+                <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')">
+                    @csrf
+                    @method('DELETE')
 
-        <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn">Empty Trash Bin</button>
-        </form>
-        </div>
+                    <div>
+                        @foreach ($notes as $note)
+                            <div class="note">
+                                <label>
+                                    <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
+                                    <div class="note-title">{{ $note->title }}</div>
+                                    <div class="note-content">{{ $note->content }}</div>
+                                </label>
+                                <hr>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <button type="submit" class="btn button-group-trash" style="display: none;" id="delete-selected-button">
+                        Delete 
+                    </button>
+                </form>
+            </div>
+        @endif
 
         <script>
             const checkboxes = document.querySelectorAll('.note-checkbox');

@@ -148,24 +148,44 @@ form {
     border: none; 
 }
 
-.btn {
-    background-color: #007acc; 
-    color: #FFFFFF;
-    padding: 10px 20px;
+.btn, .btn:link, .btn:visited {
+    background-color: #fff;
+    color: #007acc;
+    padding: 15px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; 
+    text-decoration: none;
     display: inline-block;
+    transition: background-color 0.3s, transform 0.3s; 
     font-weight: bold; 
     margin: 0 5px;
 }
 
 .btn:hover {
-    background-color: #005fa3; 
+    background-color: #fff4bf; 
     transform: scale(1.05); 
 }
- 
+
+.btn-back {
+    background-color:  #ffffff; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.3s; 
+    font-weight: bold; 
+    margin: 0 5px;
+}
+
+.btn-back:hover {
+    background-color: #fff4bf;  
+    transform: scale(1.05); 
+}
 
 .button-group {
     display: flex;
@@ -190,10 +210,11 @@ form {
  }
 
  .button-group-trash {
-    display: flex;
-    justify-content: flex-end; 
+    display: block;
     gap: 5px; 
     margin-top: 10px; 
+    margin-bottom: 15px;
+    position: relative;
 }
 
 .button-group a, .button-group-trash a {
@@ -379,6 +400,25 @@ form {
 
 .no-notes-message .btn:hover {
     background-color: #3498db;
+}
+
+#delete-selected-button {
+    position: absolute; /* Use absolute positioning */
+    top: 0;
+    right: 5px; /* Adjust the right position as needed */
+    background-color: #f44336; /* Red background color */
+    color: white; /* White text color */
+    border: none; 
+    margin-bottom: 15px;
+    padding: 10px 20px; /* Add some padding */
+    border-radius: 5px; /* Round the corners */
+    cursor: pointer; /* Change cursor to pointer */
+    display: none; /* Initially hidden */
+}
+
+/* Add hover effect */
+#delete-selected-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
 }
 
 
