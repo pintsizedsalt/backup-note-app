@@ -17,24 +17,32 @@
 
     <nav class="drawer">
         <ul>
-        <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
+            <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
             <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link active">Bookmarks</a></li>
             <li><a href="{{ route('showTrash') }}" class="nav-link">Trash Bin</a></li>
-
         </ul>
     </nav>
 
     <div class="container">
         <h1>Bookmarks</h1>
-        @foreach ($notes as $note)
-            <div class="note">
-                <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
-                    <div style="font-weight: bold; font-size: 20px;">{{$note->title}}</div>
-                    <div class="note-content">{{ $note->content }}</div>
-                </a>
-                <hr>
+
+        @if ($notes->isEmpty())
+            <div class="no-notes-message">
+                <h2>No Bookmarked Notes Found</h2>
+                <p>It looks like you haven't bookmarked any notes yet. Start exploring your notes and bookmark your favorites!</p>
+                <a href="{{ route('showAll') }}" class="btn">Go to My Notes</a>
             </div>
-        @endforeach
+        @else
+            @foreach ($notes as $note)
+                <div class="note">
+                    <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
+                        <div style="font-weight: bold; font-size: 20px;">{{ $note->title }}</div>
+                        <div class="note-content">{{ $note->content }}</div>
+                    </a>
+                    <hr>
+                </div>
+            @endforeach
+        @endif
     </div>
 </body>
 </html>

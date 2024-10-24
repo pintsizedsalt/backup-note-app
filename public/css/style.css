@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Changed to a more modern, app-like font */
+    font-family: 'Roboto', sans-serif; 
     background: #1a1a1a; 
     color: #e0e0e0; 
     line-height: 1.6; 
@@ -85,9 +85,9 @@ textarea:focus {
 }
 
 .note-checkbox {
-    position: absolute; /* Position it in the upper right corner */
-    top: 10px; /* Adjust as necessary */
-    right: 10px; /* Adjust as necessary */
+    position: absolute;
+    top: 10px;
+    right: 10px; 
     accent-color: #3fa9f5;
 }
 
@@ -129,11 +129,11 @@ textarea:focus {
     word-wrap: break-word;
     margin-left: 10px;
     color: #fff; 
-    overflow: hidden; /* Hides the overflowing text */
-    text-overflow: ellipsis; /* Displays an ellipsis for overflow */
-    display: -webkit-box; /* Required for the line clamp */
-    -webkit-box-orient: vertical; /* Required for the line clamp */
-    -webkit-line-clamp: 3; /* Limits the number of lines displayed */
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 3; 
 }
 
 .note-content-view {
@@ -191,8 +191,8 @@ form {
 
  .button-group-trash {
     display: flex;
-    justify-content: flex-end; /* Aligns buttons to the right */
-    gap: 5px; /* Adds space between the buttons */
+    justify-content: flex-end; 
+    gap: 5px; 
     margin-top: 10px; 
 }
 
@@ -336,20 +336,51 @@ form {
 }
 
 .trash-bin .note {
-    padding: 5px; /* Adjust this value */
-    margin-bottom: 5px; /* Adjust this value */
+    padding: 5px; 
+    margin-bottom: 5px; 
 }
 
 .trash-bin .note-title,
 .trash-bin .note-content {
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    padding: 0; 
+    margin: 0; 
 }
 
-/* Ensure checkboxes are aligned correctly */
 .trash-bin .note-checkbox {
-    margin-right: 5px; /* Adjust if needed */
+    margin-right: 5px; 
 }
+
+.no-notes-message {
+    text-align: center;
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.no-notes-message h2 {
+    color: #ffcc00; 
+}
+
+.no-notes-message p {
+    color: #e0e0e0;
+    margin: 10px 0;
+}
+
+.no-notes-message .btn {
+    display: inline-block;
+    background-color: #3fa9f5;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.no-notes-message .btn:hover {
+    background-color: #3498db;
+}
+
 
 @media (max-width: 600px) {
     .btn {
