@@ -18,11 +18,15 @@ body {
     background-color: #22487a; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: margin-left 0.3s ease;
+
 }
 
+/* Header styling */
 h1, h2, h3 {
     text-align: center;
-    color:  #fff;
+    color: #fff;
 }
 
 hr {
@@ -45,10 +49,9 @@ textarea {
     color: #fff;
     width: calc(100% - 20px);
     max-width: 100%;
-    padding: 10px; 
+    padding: 15px; 
     border: 1px solid #555; 
     border-radius: 5px; 
-    margin-bottom: 15px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -192,33 +195,123 @@ form {
 
 .hamburger-icon {
     cursor: pointer;
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 24px; 
 }
 
 .menu-content {
-    display: none; /* Hide by default */
-    position: absolute; /* Position the menu */
-    background-color: white; /* Background color */
-    border: 1px solid #ccc; /* Border */
-    z-index: 1; /* Ensure it's on top */
-    margin-top: 5px; /* Space between icon and menu */
+    display:  block; 
+    position: absolute; 
+    background-color: white; 
+    border: 1px solid #367fff; 
+    z-index: 1; 
+    margin-top: 5px; 
 }
 
-#menu-toggle:checked + .hamburger-icon + .menu-content {
-    display: block; /* Show the menu when checkbox is checked */
+.menu-toggle {
+    display: none;
 }
 
-.menu-content a {
-    display: block; /* Stack links */
-    padding: 8px; /* Spacing */
-    text-decoration: none; /* No underline */
-    color: black; /* Link color */
+.menu-icon {
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
 }
 
-.menu-content a:hover {
-    background-color: #f0f0f0; /* Change background on hover */
+.menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px 0;
+    transition: 0.3s;
 }
 
+.menu-toggle:checked + .menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle:checked + .menu-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked + .menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.drawer {
+    position: fixed; 
+    top: 0; 
+    left: -250px; 
+    width: 250px; 
+    height: 100%; 
+    background-color: #f3f4f6; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease; 
+    z-index: 1000; 
+    padding-top: 60px; 
+}
+
+.menu-toggle:checked ~ .drawer {
+    left: 0;
+}
+
+.drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.drawer ul li {
+    padding: 15px;
+}
+
+.drawer ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+}
+
+.menu-icon span {
+    background-color: #639ffe; 
+}
+
+.close-icon {
+    display: block;
+    font-size: 30px; 
+    color: #002d71;
+    cursor: pointer;
+    margin: 10px;
+    text-align: left; 
+    transition: color 0.3s; 
+    position: absolute; 
+}
+
+.close-icon:hover {
+    color: #3b6fd8; 
+}
+
+.nav-link {
+    display: block; 
+    padding: 10px 5px; 
+    color: #e0e0e0; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s;
+}
+
+
+.nav-link:hover {
+    background-color: #3fa9f5; 
+    color: #ffffff;
+}
+
+.nav-link.active {
+    background-color: #007acc;
+    color: #ffffff; 
+}
 
 
 @media (max-width: 600px) {
@@ -236,7 +329,7 @@ form {
     }
 
     .btn {
-        width: 100%; 
+        width: auto; 
         margin-top: 10px;
         font-size: 18px;
     }

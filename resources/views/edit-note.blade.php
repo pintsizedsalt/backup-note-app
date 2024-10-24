@@ -17,6 +17,20 @@
     </style>
 </head>
 <body>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="drawer">
+            <ul>
+                <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link active">Bookmarks</a></li>
+                <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
+            </ul>
+        </nav>
     <div class="container">
         <h1>Edit Note</h1>
         <form action="{{ route('updateNote', ['id' => $note->id])}}" method="POST"> 

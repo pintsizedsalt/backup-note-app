@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarked Notes</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<div class="container">
-        <h1>Bookmarked Notes</h1>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
+    <nav class="drawer">
+        <ul>
+            <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link active">Bookmarks</a></li>
+            <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Bookmarks</h1>
         @foreach ($notes as $note)
             <div class="note">
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
@@ -19,10 +33,6 @@
                 <hr>
             </div>
         @endforeach
-
-        <form action="{{ route('showAll') }}" method="GET" class="create-note-form">
-            <button type="submit" class="btn">Back to All Notes</button>
-        </form>
     </div>
 </body>
 </html>

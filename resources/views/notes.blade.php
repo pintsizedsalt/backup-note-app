@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="drawer">
+        <ul>
+            <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link">Bookmarks</a></li>
+            <li><a href="{{ route('showAll') }}" class="nav-link active">My Notes</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <h1>MY NOTES</h1>
-
-        <div class="hamburger-menu">
-            <input type="checkbox" id="menu-toggle" style="display: none;">
-            <label for="menu-toggle" class="hamburger-icon">&#9776;</label>
-            <div class="menu-content">
-                <a href="{{ route('showAll') }}">My Notes</a>
-                <a href="{{ route('showBookmarkedNotes') }}">Bookmarked Notes</a> 
-            </div>
-        </div>
 
         <div class="row m-2">
             <form action="" method="GET">
