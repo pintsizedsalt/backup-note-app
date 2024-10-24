@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trash Bin</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -35,7 +36,7 @@
             @foreach ($notes as $note)
                 <div class="note">
                     <label>
-                        <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
+                        <input type="checkbox" name="input_id" value="{{ $note->id }}" class="note-checkbox">
                         <div class="note-title">{{ $note->title }}</div>
                         <div class="note-content">{{ $note->content }}</div>
                     </label>
@@ -47,7 +48,7 @@
         <div class="button-group-trash">
         <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')">
             @csrf
-            @method("DELETE")
+            @method('DELETE')
             <button type="submit" class="btn" style="display: none;" id="delete-selected-button">
                 Delete Selected
             </button>
@@ -55,7 +56,7 @@
 
         <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')">
             @csrf
-            @method("DELETE")
+            @method('DELETE')
             <button type="submit" class="btn">Empty Trash Bin</button>
         </form>
         </div>

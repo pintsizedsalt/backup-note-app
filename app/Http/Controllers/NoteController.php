@@ -111,8 +111,9 @@ class NoteController extends Controller
             session()->flash('status', $message);
         }
 
-        return redirect()->route('showBookmarkedNotes'); 
+        return back();  
     }
+
 
     public function showBookmarkedNotes()
     {

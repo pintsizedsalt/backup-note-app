@@ -12,14 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->boolean('is_bookmarked')->default(false); // Add this line
+            $table->boolean('is_bookmarked')->default(false); 
         });
     }
 
     public function down()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->dropColumn('is_bookmarked'); // Add this line
+            $table->dropColumn('is_bookmarked'); 
         });
     }
 };

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
@@ -47,7 +47,7 @@
             <div class="note">
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
                     <div style="font-weight: bold; font-size: 20px;">{{$note->title}}</div>
-                    <div class="note-content">{{ $note->content }}</div>
+                    <div class="note-content">{{ Str::limit($note->content, 100, '...') }}</div>
                 </a>
                 <hr>
             </div>

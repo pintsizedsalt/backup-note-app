@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    font-family: 'Fira Code', monospace; 
+    font-family: 'Roboto', sans-serif; /* Changed to a more modern, app-like font */
     background: #1a1a1a; 
     color: #e0e0e0; 
     line-height: 1.6; 
@@ -17,16 +17,15 @@ body {
     padding: 20px;
     background-color: #22487a; 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     z-index: 1;
     transition: margin-left 0.3s ease;
-
 }
 
-/* Header styling */
 h1, h2, h3 {
     text-align: center;
     color: #fff;
+    letter-spacing: 0.5px; 
 }
 
 hr {
@@ -49,10 +48,12 @@ textarea {
     color: #fff;
     width: calc(100% - 20px);
     max-width: 100%;
-    padding: 15px; 
+    padding: 10px; 
+    margin: 10px;
     border: 1px solid #555; 
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+    transition: border-color 0.3s;
 }
 
 textarea {
@@ -71,22 +72,6 @@ textarea:focus {
     text-align: center;
 }
 
-.btn {
-    background-color: #007acc;
-    color: #FFFFFF;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; 
-    display: inline-block;
-}
-
-.btn:hover {
-    background-color: #007acc;
-    transform: scale(1.05); 
-}
-
 .note {
     position: relative;
     background-color: #2b2b2b;
@@ -95,7 +80,7 @@ textarea:focus {
     padding: 15px; 
     cursor: pointer;
     border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -125,7 +110,7 @@ textarea:focus {
 .note:hover {
     color: #63d0fb;
     transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease; 
     cursor: pointer;
 }
@@ -144,6 +129,18 @@ textarea:focus {
     word-wrap: break-word;
     margin-left: 10px;
     color: #fff; 
+    overflow: hidden; /* Hides the overflowing text */
+    text-overflow: ellipsis; /* Displays an ellipsis for overflow */
+    display: -webkit-box; /* Required for the line clamp */
+    -webkit-box-orient: vertical; /* Required for the line clamp */
+    -webkit-line-clamp: 3; /* Limits the number of lines displayed */
+}
+
+.note-content-view {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-left: 10px;
+    color: #fff; 
 }
 
 form {
@@ -152,50 +149,57 @@ form {
 }
 
 .btn {
-    display: inline-block; 
-    padding: 10px 15px; 
-    background-color: #2a6199;
-    color: #fff; 
+    background-color: #007acc; 
+    color: #FFFFFF;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px; 
-    text-align: center;
-    text-decoration: none; 
-    font-size: 16px; 
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; 
+    transition: background-color 0.3s, transform 0.3s; 
+    display: inline-block;
+    font-weight: bold; 
+    margin: 0 5px;
 }
 
 .btn:hover {
-    background-color: #3fa9f5; 
+    background-color: #005fa3; 
     transform: scale(1.05); 
 }
+ 
 
 .button-group {
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
-    margin-top: 10px; 
-}
+    gap: 5px;
+    margin-top: 10px;
+ }
+ 
+ 
+ .button-group a {
+    margin-left: 0;
+ }
+ 
+ 
+ .button-group form {
+    margin-right: 10px;
+ }
+ 
+ 
+ .button-group form:last-child {
+    margin-right: 0;
+ }
 
-.button-group-trash {
+ .button-group-trash {
     display: flex;
     justify-content: flex-end; /* Aligns buttons to the right */
-    gap: 10px; /* Adds space between the buttons */
+    gap: 5px; /* Adds space between the buttons */
     margin-top: 10px; 
 }
 
-.button-group a {
-    margin-left: 0; 
+.button-group a, .button-group-trash a {
+    margin: 0;
 }
-
-.button-group form {
-    margin-right: 10px;
-}
-
-.button-group form:last-child {
-    margin-right: 0; 
-}
-
+ 
 .create-note-form {
     display: flex; 
     justify-content: center; 
@@ -218,7 +222,7 @@ form {
 }
 
 .menu-content {
-    display:  block; 
+    display: block; 
     position: absolute; 
     background-color: white; 
     border: 1px solid #367fff; 
@@ -321,7 +325,6 @@ form {
     transition: background-color 0.3s;
 }
 
-
 .nav-link:hover {
     background-color: #3fa9f5; 
     color: #ffffff;
@@ -350,52 +353,62 @@ form {
 
 @media (max-width: 600px) {
     .btn {
-        width: 100%; 
-        font-size: 18px; 
+        width: 100%;
+        font-size: 18px;
     }
-}
-
-@media (max-width: 600px) {
+ }
+ 
+ 
+ @media (max-width: 600px) {
     .input-title,
     textarea {
         width: 100%;
         padding: 8px;
     }
-
+ 
+ 
     .btn {
-        width: auto; 
+        width: 100%;
         margin-top: 10px;
         font-size: 18px;
     }
-
+ 
+ 
     .form-group {
-        margin-right: 0; 
+        margin-right: 0;
     }
-
+ 
+ 
     .form-group input {
         width: 100%;
     }
-
+ 
+ 
     .note {
         padding: 10px;
     }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
+ }
+ 
+ 
+ @media (min-width: 601px) and (max-width: 1024px) {
     .container {
-        padding: 15px; 
+        padding: 15px;
     }
-
+ 
+ 
     .input-title,
     textarea {
         width: 95%;
     }
-
+ 
+ 
     .btn {
-        width: auto; 
+        width: auto;
     }
-
+ 
+ 
     .note {
-        margin: 15px 0; 
+        margin: 15px 0;
     }
-}
+ }
+ 
