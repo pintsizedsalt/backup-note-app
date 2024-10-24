@@ -24,6 +24,9 @@ Route::get('/notes/search',[NoteController::class, 'searchNote'])->name('searchN
 Route::post('/notes/{id}/toggle-bookmark', [NoteController::class, 'toggleBookmark'])->name('toggleBookmark');
 Route::get('/notes-bookmarked', [NoteController::class, 'showBookmarkedNotes'])->name('showBookmarkedNotes');
 
+Route::get('/notes-trash', [NoteController::class, 'showTrash'])->name('showTrash');
+Route::delete('/notes-trash/delete', [NoteController::class, 'deleteSelectedNotes'])->name('deleteSelectedNotes');
+Route::delete('/notes-trash/empty', [NoteController::class, 'emptyTrash'])->name('emptyTrash');
 
 
 //Requirements

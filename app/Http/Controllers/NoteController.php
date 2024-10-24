@@ -124,4 +124,28 @@ class NoteController extends Controller
 
         return view('bookmarked-notes', ['notes' => $bookmarkedNotes]);
     }
+
+    public function showTrash()
+    {
+        $trashedNotes = Note::onlyTrashed()->get();
+        return view('trash', ['notes' => $trashedNotes]);
+    }
+
+    public function deleteSelectedNotes(Request $request)
+    {
+        Log::info('Request method: ' . $request->method()); 
+        $noteIds = $request->input('note_ids', []);
+        session(['selected_ids' => $noteIds]); 
+
+        Note::onlyTrashed()->whereIn('id', $noteIds)->forceDelete();
+        return redirect()->route('showTrash')->with('success', 'Selected notes deleted permanently.');
+
+    }
+
+
+    public function emptyTrash()
+    {
+        Note::onlyTrashed()->forceDelete();
+        return redirect()->route('showTrash')->with('success', 'Trash bin emptied.');
+    }
 }

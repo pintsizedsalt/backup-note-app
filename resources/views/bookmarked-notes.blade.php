@@ -17,8 +17,10 @@
 
     <nav class="drawer">
         <ul>
+        <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
             <li><a href="{{ route('showBookmarkedNotes') }}" class="nav-link active">Bookmarks</a></li>
-            <li><a href="{{ route('showAll') }}" class="nav-link">My Notes</a></li>
+            <li><a href="{{ route('showTrash') }}" class="nav-link">Trash Bin</a></li>
+
         </ul>
     </nav>
 

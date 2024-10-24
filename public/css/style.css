@@ -88,13 +88,22 @@ textarea:focus {
 }
 
 .note {
+    position: relative;
     background-color: #2b2b2b;
     border: 1px solid #444;
     margin: 10px 0;
     padding: 15px; 
+    cursor: pointer;
     border-radius: 8px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.note-checkbox {
+    position: absolute; /* Position it in the upper right corner */
+    top: 10px; /* Adjust as necessary */
+    right: 10px; /* Adjust as necessary */
+    accent-color: #3fa9f5;
 }
 
 .note::before {
@@ -103,11 +112,13 @@ textarea:focus {
     height: 2px;
     background-color: #fff; 
     margin: -15px -15px 15px; 
+    cursor: pointer;
 }
 
 .note a {
     color: #3fa9f5;
-    text-decoration: none; 
+    text-decoration: none;
+    cursor: pointer; 
     transition: color 0.3s; 
 }
 
@@ -116,6 +127,7 @@ textarea:focus {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease; 
+    cursor: pointer;
 }
 
 .note-title {
@@ -161,7 +173,14 @@ form {
 .button-group {
     display: flex;
     justify-content: flex-start;
-    gap: 5px;
+    gap: 10px;
+    margin-top: 10px; 
+}
+
+.button-group-trash {
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    gap: 10px; /* Adds space between the buttons */
     margin-top: 10px; 
 }
 
@@ -313,6 +332,21 @@ form {
     color: #ffffff; 
 }
 
+.trash-bin .note {
+    padding: 5px; /* Adjust this value */
+    margin-bottom: 5px; /* Adjust this value */
+}
+
+.trash-bin .note-title,
+.trash-bin .note-content {
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+/* Ensure checkboxes are aligned correctly */
+.trash-bin .note-checkbox {
+    margin-right: 5px; /* Adjust if needed */
+}
 
 @media (max-width: 600px) {
     .btn {
