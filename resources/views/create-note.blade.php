@@ -56,7 +56,7 @@
                 </div>
                 <div class="button-group">
                     <button type="submit" class="btn-homepage">Create Note</button>
-                    <a href="{{ url()->previous() }}" class="home-button" aria-label="Go back"><i class="fa-solid fa-circle-left"></i></a>
+                    <a href="{{ route('showAll') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
                 </div>
             </form>
         </main>

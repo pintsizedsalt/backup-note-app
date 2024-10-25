@@ -72,6 +72,8 @@ textarea {
 
 input[type="text"]:focus,
 textarea:focus {
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
     border-color: #03a9f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -279,6 +281,32 @@ form {
 
 .search-button:hover {
     background-color: #ffb4d2;
+}
+
+@keyframes buttonHover {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn:focus, .btn-homepage:focus, .search-button:focus {
+    animation: buttonHover 0.6s ease forwards; 
+}
+
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #56d8ff; 
+    border: solid #000;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
 }
 
 .bookmark-container {
@@ -505,10 +533,12 @@ form {
     .input-title,
     textarea {
         width: calc(100% - 20px);
+        padding: 10px 25px; 
     }
 
     textarea {
         margin-bottom: -10px;
+        padding: 9px; 
     }
 
     .note {
