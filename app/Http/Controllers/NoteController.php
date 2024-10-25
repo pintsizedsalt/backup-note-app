@@ -121,16 +121,27 @@ class NoteController extends Controller
     }
 
 
-    public function showBookmarkedNotes()
+    public function showBookmarkedNotes(Request $request)
     {
-        $bookmarkedNotes = Note::where('is_bookmarked', true)->get();
+        $search = $request->input('search', '');
+        
+        $bookmarkedNotes = Note::where('is_bookmarked', true);
+
+        if ($search) {
+            $bookmarkedNotes->where(function($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('content', 'LIKE', "%$search%");
+            });
+        }
+
+        $bookmarkedNotes = $bookmarkedNotes->get();
 
         return view('bookmarked-notes', [
             'notes' => $bookmarkedNotes,
-            'noNotesMessage' => $bookmarkedNotes->isEmpty() ? "No bookmarked notes found." : null
+            'noNotesMessage' => $bookmarkedNotes->isEmpty() ? "No bookmarked notes found." : null,
+            'search' => $search,
         ]);
     }
-
 
     public function showTrash()
     {

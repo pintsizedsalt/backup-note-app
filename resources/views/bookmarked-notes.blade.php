@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarked Notes</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -31,6 +31,20 @@
         </div>
         
         <h1>Bookmarks</h1>
+
+        <section class="search-section">
+            <form action="{{ route('showBookmarkedNotes') }}" method="GET" class="search-form">
+                <div class="form-group-2">
+                    <input type="search" name="search" id="search" placeholder="Search..." value="{{ $search }}" required class="input-title search-input">
+                    <button class="search-button btn-primary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                @if(!empty($search))
+                    <a href="{{ route('showBookmarkedNotes') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
+                @endif
+            </form>
+        </section>
 
         @if ($noNotesMessage)
             <section class="no-notes-message">

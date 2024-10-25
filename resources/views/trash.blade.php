@@ -77,7 +77,7 @@
                             <label>
                                 <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
                                 <h3 class="note-title">{{ $note->title }}</h3>
-                                <p class="note-content">{{ $note->content }}</p>
+                                <p class="note-content">{{ Str::limit($note->content, 100, '...') }}</p>
                             </label>
                             <hr>
                         </article>
@@ -100,7 +100,6 @@
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
                     const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
-
                     deleteButton.style.display = anyChecked ? 'block' : 'none';
                     restoreButton.style.display = anyChecked ? 'block' : 'none';
 
@@ -118,9 +117,24 @@
             });
 
             deleteButton.addEventListener('click', () => {
-                deleteForm.submit(); 
-            });
+                const selectedNotes = Array.from(checkboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
 
+                if (selectedNotes.length > 0) {
+
+                    selectedNotes.forEach(id => {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'note_ids[]';
+                        input.value = id;
+                        deleteForm.appendChild(input);
+                    });
+                    deleteForm.submit(); 
+                } else {
+                    alert("Please select at least one note to delete.");
+                }
+            });
         </script>
     </div>
 </body>

@@ -31,7 +31,7 @@
             </a>
         </header>
 
-        <a href="{{ url()->previous() }}" class="home-button" aria-label="Go back"><i class="fa-solid fa-circle-left"></i></a>
+        <a href="{{ route('showAll') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
 
         <main>
             <h1>My Note</h1>
