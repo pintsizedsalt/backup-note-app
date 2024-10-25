@@ -141,6 +141,7 @@ class NoteController extends Controller
     public function deleteSelectedNotes(Request $request)
     {
         $noteIds = $request->input('note_ids', []);
+        Log::info('Deleting notes with IDs: ' . implode(', ', $noteIds));
         
         if (empty($noteIds)) {
             return redirect()->route('showTrash')->with('no_delete', 'No selected items to delete.');
@@ -149,6 +150,8 @@ class NoteController extends Controller
         Note::onlyTrashed()->whereIn('id', $noteIds)->forceDelete();
         return redirect()->route('showTrash')->with('success', 'Selected notes deleted permanently.');
     }
+
+
 
     public function emptyTrash()
     {
