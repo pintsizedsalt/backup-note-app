@@ -55,7 +55,7 @@
                     <textarea id="content" name="content" rows="6" required></textarea>
                 </div>
                 <div class="button-group">
-                    <button type="submit" class="btn-homepage">Create Note</button>
+                    <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">Create Note</button>
                     <a href="{{ route('showAll') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
                 </div>
             </form>

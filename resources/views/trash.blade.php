@@ -51,13 +51,13 @@
                     <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-homepage"><i class="fa-solid fa-trash-can"></i> Empty Trash</button>
+                        <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;"><i class="fa-solid fa-trash-can"></i> Empty Trash</button>
                     </form>
 
                     <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure you want to delete this? This will be permanently deleted.')" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-homepage" id="delete-selected-button" style="display: none;">
+                        <button type="submit" class="btn-homepage" id="delete-selected-button" style="display: none; font-family: 'Courier New', Courier, monospace;">
                             <i class="fa-regular fa-trash-can"></i> Delete Forever
                         </button>
                     </form>
@@ -65,7 +65,7 @@
                     <form action="{{ route('restoreSelectedNotes') }}" method="POST" id="restore-selected-form" style="display: inline;">
                         @csrf
                         <div id="restore-notes-container"></div>
-                        <button type="submit" class="btn-homepage" id="restore-selected-button" style="display: none;">
+                        <button type="submit" class="btn-homepage" id="restore-selected-button" style="display: none; font-family: 'Courier New', Courier, monospace;">
                             <i class="fa-solid fa-trash-can-arrow-up"></i> Restore
                         </button>
                     </form>
