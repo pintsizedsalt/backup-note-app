@@ -6,6 +6,7 @@
     <title>Edit Note</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .input-title {
             width: 300px;
@@ -53,10 +54,10 @@
                 <textarea id="content" name="content" rows="5" required style="width: 100%;">{{$note->content}}</textarea>
             </div>
 
-            <button type="submit" class="btn">Save</button>
+            <button type="submit" class="btn" style="font-family: 'Courier New', Courier, monospace;"> save <i class="fa-solid fa-floppy-disk"></i></button>
 
             <div class="button-group">
-            <a href="{{ url()->previous() }}" class="btn-back">Back</a>
+            <a href="{{ url()->previous() }}" class="btn btn-small" > back <i class="fa-solid fa-house"> </i> </a>
             </div>
         </form>
     </div>

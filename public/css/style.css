@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Courier New', Courier, monospace; 
     background: linear-gradient(135deg,#b3e5fc,#fddaff);
     color: #000000; 
     line-height: 1.6; 

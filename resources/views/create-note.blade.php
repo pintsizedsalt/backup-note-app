@@ -53,7 +53,7 @@
             <textarea id="content" name="content" rows="6" required></textarea>
         </div>
         <div class="button-group">
-            <button type="submit" class="btn">Create Note</button>
+            <button type="submit" class="btn" >Create Note</button>
             <a href="{{ url()->previous() }}" class="btn-back">Back</a>
         </div>
     </form>
