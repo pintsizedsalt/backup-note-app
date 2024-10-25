@@ -46,9 +46,10 @@ label {
 
 .input-title, 
 textarea {
+    flex-grow: 1;
     background-color: #b3e5fc; 
     color: #333;
-    width: calc(100% - 20px);
+    width: calc(100% - 20px); 
     max-width: 100%;
     padding: 10px; 
     margin: 10px;
@@ -59,13 +60,13 @@ textarea {
 }
 
 textarea {
-    width: 100%; /* Full width */
-    padding: 10px; /* Add padding inside the textarea */
-    border: 1px solid #ccc; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
-    resize: vertical; /* Allow vertical resizing */
-    margin: 0; /* Remove margin to prevent overlap */
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    resize: vertical;
+    margin: 0; 
     max-width: calc(100% - 20px);
 }
 
@@ -75,9 +76,23 @@ textarea:focus {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.form-group {
+.form-group-1 {
+    display: block;
+    align-items: center;
     text-align: center;
     margin-bottom: 15px;
+}
+
+.form-group-2 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group-2 .search-button {
+    margin-left: 10px; 
 }
 
 .note {
@@ -153,7 +168,30 @@ form {
     border: none; 
 }
 
-.btn, .btn:link, .btn:visited {
+.btn, .btn:link, .btn:visited { 
+    background-color: transparent;
+    color: #0288d1;
+    flex: 1 1 120px;
+    width: 50px; 
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
+    display: inline-flex;
+    transition: transform 0.3s; 
+    font-weight: bold; 
+}
+
+.btn:hover {
+    color: #ffb4d2; 
+    transform: scale(1.1); 
+}
+
+.btn-homepage {
     background-color: #0288d1; 
     color: #ffffff;
     padding: 15px 20px;
@@ -161,6 +199,7 @@ form {
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
+    flex: 1 1 120px;
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s, transform 0.3s; 
@@ -168,63 +207,82 @@ form {
     margin: 0 5px;
 }
 
-.btn:hover {
+.btn-homepage:hover {
     background-color: #ffb4d2; 
     transform: scale(1.05); 
 }
 
-.btn-back {
-    background-color: #0288d1; 
-    color: #ffffff;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s, transform 0.3s; 
-    font-weight: bold; 
-    margin: 0 5px;
-}
-
-.btn-back:hover {
-    background-color: #ffb4d2;  
-    transform: scale(1.05); 
-}
-
-.button-icon {
-    width: 24px; /* Icon size */
-    height: 24px; /* Icon size */
-}
-
 .button-group {
     display: flex;
-    justify-content: flex-start;
-    gap: 5px;
+    justify-content: flex-end;
     margin-top: 10px;
- }
+    flex-wrap: wrap;
+}
  
- .button-group a {
+.button-group a {
     margin-left: 0;
- }
+}
  
- 
- .button-group form {
+.button-group form {
     margin-right: 10px;
- }
+}
  
- 
- .button-group form:last-child {
+.button-group form:last-child {
     margin-right: 0;
- }
+}
 
- .button-group-trash {
+.button-group-trash {
+    display: flex;
+    justify-content: flex-start;
+    color: #000;
     display: block;
-    gap: 5px; 
+    gap: 10px; 
     margin-top: 10px; 
     margin-bottom: 15px;
     position: relative;
+}
+
+.home-button {
+    position: absolute;
+    top: 0; 
+    right: 0;
+    margin: 10px;
+    color: #0288d1;
+    margin: 30px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s; 
+    font-weight: bold; 
+}
+
+.home-button:hover {
+    color: #ffb4d2; 
+    transform: scale(1.24); 
+}
+
+.search-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px; 
+    background-color: #0288d1; 
+    color: #fff; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #ffb4d2;
+}
+
+.bookmark-container {
+    position: absolute; 
+    top: 10px;        
+    right: 10px;       
+    z-index: 10;      
 }
 
 .create-note-form {
@@ -367,6 +425,27 @@ form {
     color: #000; 
 }
 
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+.logo-img {
+    width: 60px; 
+    height: 60px;
+    object-fit: cover; 
+    transition: transform 0.3s; 
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.26); 
+}
+
 .no-notes {
     text-align: center;
     margin-top: 30px;
@@ -406,100 +485,43 @@ form {
     background-color: #3498db;
 }
 
-#delete-selected-button {
-    position: absolute;
-    top: 0;
-    right: 5px; 
-    background-color: #f44336; 
-    color: white; 
-    border: none; 
-    margin-bottom: 15px;
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer;
-    display: none; 
-}
-
-#delete-selected-button:hover {
-    background-color: #d32f2f; 
-}
-
-#restore-selected-button {
-    position: absolute; 
-    top: 0;
-    right: 70px; 
-    background-color: #4caf50;
-    color: white; 
-    border: none; 
-    margin-bottom: 15px;
-    margin-right: 30px;
-    padding: 10px 20px; 
-    border-radius: 5px;
-    cursor: pointer;
-    display: none; 
-}
-
-#restore-selected-button:hover {
-    background-color: #388e3c; 
-}
-
-.logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    z-index: 10;
-}
-
-.logo-img {
-    width: 60px; /* Set a smaller width */
-    height: 60px; /* Set a smaller height */
-    object-fit: cover; /* Ensure the image scales correctly */
-    transition: transform 0.3s; /* Smooth transition for hover effects */
-}
-
-.logo:hover .logo-img {
-    transform: scale(1.05); /* Similar hover effect as the button */
-}
-
 @media (max-width: 600px) {
-    .btn {
-        width: 100%;
-        font-size: 18px;
-    }
-
-    .input-title,
-    textarea {
-        width: 100%;
-        padding: 8px;
-    }
-
-    .form-group input {
-        width: 100%;
-    }
-
-    .note {
-        padding: 10px;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
     .container {
-        padding: 15px;
+        margin: 10px; 
+        padding: 10px; 
+    }
+
+    hr {
+        display: none;
+    }
+    
+    br {
+        display: none;
     }
 
     .input-title,
     textarea {
-        width: 95%;
-    }
-
-    .btn {
-        width: auto;
+        width: calc(100% - 20px);
     }
 
     .note {
-        margin: 15px 0;
+        padding: 10px; 
+        font-size: 14px; 
+    }
+
+    .btn, .btn-homepage {
+        width: 100%; 
+        height: 40px;
+        font-size: 20px; 
+    }
+
+    .create-note-form .btn {
+        padding: 5px 10px;
+        font-size: 14px; 
+    }
+
+    .button-group {
+        flex-direction: row; 
+        align-items: stretch; 
     }
 }

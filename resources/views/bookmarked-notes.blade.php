@@ -23,34 +23,35 @@
         </ul>
     </nav>
 
-    <div class="container">
-
-            <div class="logo">
-                <a href="{{ route('showAll') }}">
-                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
-                </a>
-            </div>
-            
+    <main class="container">
+        <div class="logo">
+            <a href="{{ route('showAll') }}">
+                <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
+            </a>
+        </div>
+        
         <h1>Bookmarks</h1>
 
         @if ($noNotesMessage)
-            <div class="no-notes-message">
+            <section class="no-notes-message">
                 <h2>{{ $noNotesMessage }}</h2>
                 <p>It looks like you haven't bookmarked any notes yet. Start exploring your notes and bookmark your favorites!</p>
-                <a href="{{ route('showAll') }}" class="btn">Go to My Notes</a>
-            </div>
+                <a href="{{ route('showAll') }}" class="btn-homepage">Go to My Notes</a>
+            </section>
         @else
-            @foreach ($notes as $note)
-                <div class="note">
-                    <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
-                        <div style="font-weight: bold; font-size: 20px;">{{ $note->title }}</div>
-                        <div class="note-content">{{ $note->content }}</div>
-                    </a>
-                    <hr>
-                </div>
-            @endforeach
+            <section class="notes-list">
+                @foreach ($notes as $note)
+                    <article class="note">
+                        <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
+                            <h3 style="font-weight: bold; font-size: 20px;">{{ $note->title }}</h3>
+                            <p class="note-content">{{ $note->content }}</p>
+                        </a>
+                        <hr>
+                    </article>
+                @endforeach
+            </section>
         @endif
 
-    </div>
+    </main>
 </body>
 </html>

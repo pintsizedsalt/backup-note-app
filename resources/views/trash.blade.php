@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trash Bin</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -25,12 +25,14 @@
     </nav>
 
     <div class="container">
-        <div class="logo">
-                <a href="{{ route('showAll') }}">
-                    <img src="{{ asset('images/datadump.png') }}" alt="datadump" class="logo-img">
-                </a>
-            </div>
+        <header class="logo">
+            <a href="{{ route('showAll') }}">
+                <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
+            </a>
+        </header>
+
         <h1>Trash Bin</h1>
+
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @elseif(session('error'))
@@ -38,47 +40,53 @@
         @endif
 
         @if ($notes->isEmpty())
-            <div class="no-notes-message">
+            <section class="no-notes-message">
                 <h2>Your Trash Bin is Empty</h2>
                 <p>It looks like there are no notes in your trash. When you delete notes, they'll appear here for you to restore or permanently delete.</p>
-                <a href="{{ route('showAll') }}" class="btn">Go to My Notes</a>
-            </div>
+                <a href="{{ route('showAll') }}" class="btn-homepage">Go to My Notes</a>
+            </section>
         @else
-            <div class="button-group-trash">
-                <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn">Empty Trash Bin</button>
-                </form>
+            <section class="trash-notes">
+                <div class="button-group-trash">
+                    <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-homepage"><i class="fa-solid fa-trash-can"></i> Empty Trash</button>
+                    </form>
 
-                <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure?')" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
+                    <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure you want to delete this? This will be permanently deleted.')" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
 
-                    <div>
-                        @foreach ($notes as $note)
-                            <div class="note" data-note-id="{{ $note->id }}">
-                                <label>
-                                    <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
-                                    <div class="note-title">{{ $note->title }}</div>
-                                    <div class="note-content">{{ $note->content }}</div>
-                                </label>
-                                <hr>
-                            </div>
-                        @endforeach
-                    </div>
+                        <div>
+                            @foreach ($notes as $note)
+                                <article class="note" data-note-id="{{ $note->id }}">
+                                    <label>
+                                        <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
+                                        <h3 class="note-title">{{ $note->title }}</h3>
+                                        <p class="note-content">{{ $note->content }}</p>
+                                    </label>
+                                    <hr>
+                                </article>
+                            @endforeach
+                        </div>
 
-                    <div class="button-group">
-                        <button type="submit" class="btn" style="display: none;" id="delete-selected-button">Delete</button>
-                    </div>
-                </form>
+                        <div class="button-group">
+                            <button type="submit" class="btn-homepage" id="delete-selected-button"><i class="fa-regular fa-trash-can"></i> Delete Forever</button>
+                        </div>
+                    </form>
 
-                <form action="{{ route('restoreSelectedNotes') }}" method="POST" id="restore-selected-form">
-                    @csrf
-                    <div id="restore-notes-container"></div>
-                    <button type="submit" class="btn" style="display: none;" id="restore-selected-button">Restore</button>
-                </form>
-            </div>
+                    <form action="{{ route('restoreSelectedNotes') }}" method="POST" id="restore-selected-form" style="display: inline;">
+                        @csrf
+                        <div id="restore-notes-container"></div>
+                        <button type="submit" class="btn-homepage" id="restore-selected-button"><i class="fa-solid fa-trash-can-arrow-up"></i> Restore</button>
+                    </form>
+                </div>
+
+                @if(session('warning'))
+                    <div class="alert alert-warning">{{ session('warning') }}</div>
+                @endif
+            </section>
         @endif
 
         <script>
@@ -88,9 +96,13 @@
             const restoreButton = document.getElementById('restore-selected-button');
             const restoreContainer = document.getElementById('restore-notes-container');
 
+            deleteButton.style.display = 'none';
+            restoreButton.style.display = 'none';
+
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
                     const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+
                     deleteButton.style.display = anyChecked ? 'block' : 'none';
                     restoreButton.style.display = anyChecked ? 'block' : 'none';
 
@@ -105,42 +117,6 @@
                         }
                     });
                 });
-            });
-
-            restoreForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent form submission
-                const selectedNotes = Array.from(checkboxes).filter(cb => cb.checked);
-                selectedNotes.forEach(checkbox => {
-                    const noteDiv = checkbox.closest('.note');
-                    const noteId = noteDiv.dataset.noteId;
-                    
-                    // Here you would typically send a request to the server to restore the note.
-                    // For demonstration, we'll simply remove it from the DOM.
-                    if (noteId) {
-                        // Simulate the restoration process
-                        fetch(`{{ route('restoreSelectedNotes') }}`, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ note_ids: [noteId] })
-                        }).then(response => {
-                            // If the note is successfully restored, remove it from the DOM
-                            if (response.ok) {
-                                noteDiv.remove(); // Remove the restored note from the DOM
-                            } else {
-                                alert('Error restoring the note. Please try again.');
-                            }
-                        });
-                    }
-                });
-
-                // Clear checkboxes and hide buttons
-                selectedNotes.forEach(cb => cb.checked = false);
-                deleteButton.style.display = 'none';
-                restoreButton.style.display = 'none';
-                restoreContainer.innerHTML = '';
             });
         </script>
     </div>

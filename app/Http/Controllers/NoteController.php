@@ -140,15 +140,15 @@ class NoteController extends Controller
 
     public function deleteSelectedNotes(Request $request)
     {
-        Log::info('Request method: ' . $request->method()); 
         $noteIds = $request->input('note_ids', []);
-        session(['selected_ids' => $noteIds]); 
+        
+        if (empty($noteIds)) {
+            return redirect()->route('showTrash')->with('no_delete', 'No selected items to delete.');
+        }
 
         Note::onlyTrashed()->whereIn('id', $noteIds)->forceDelete();
         return redirect()->route('showTrash')->with('success', 'Selected notes deleted permanently.');
-
     }
-
 
     public function emptyTrash()
     {
@@ -160,8 +160,15 @@ class NoteController extends Controller
     {
         $noteIds = $request->input('note_ids', []);
         
+        if (empty($noteIds)) {
+            return redirect()->route('showTrash')->with('no_restore', 'No selected items to restore.');
+        }
+
+        Log::info('Restoring notes with IDs: ' . implode(', ', $noteIds));
+
         Note::withTrashed()->whereIn('id', $noteIds)->restore();
-        return redirect()->route('showAll')->with('success', 'Selected notes restored successfully.');
+
+        return redirect()->route('showTrash')->with('success', 'Selected notes restored successfully.');
     }
 
 }

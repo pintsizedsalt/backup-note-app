@@ -53,3 +53,8 @@ Route::post('/notes-trash/restore', [NoteController::class, 'restoreSelectedNote
 // name
 // email
 // birthday
+
+//home button
+/*            <form action="{{ route('showAll') }}" method="GET" class="home-button">
+<button type="submit" class="btn"><i class="fa-solid fa-house"></i></button>
+</form> */
