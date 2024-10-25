@@ -58,13 +58,13 @@
         @endif
 
         @if(empty($search))
-            <section class="create-note-wrapper">
-                <form action="{{ route('createNote') }}" method="GET" class="create-note-form">
-                    <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">
-                        <i class="fa-solid fa-plus"></i> Create
-                    </button>
-                </form>
-            </section>
+        <section class="create-note-wrapper">
+            <form action="{{ route('createNote') }}" method="GET" class="create-note-form">
+                <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">
+                    <i class="fa-solid fa-plus"></i> <span class="create-text">Create</span>
+                </button>
+            </form>
+        </section>
         @endif
 
         @if(!$notes->isEmpty())

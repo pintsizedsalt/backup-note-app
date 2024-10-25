@@ -53,7 +53,8 @@
                         @method('DELETE')
                         <button type="submit" class="btn-homepage"><i class="fa-solid fa-trash-can"></i> Empty Trash</button>
                     </form>
-
+                    <br>
+                    
                     <form action="{{ route('deleteSelectedNotes') }}" method="POST" id="delete-selected-form" onsubmit="return confirm('Are you sure you want to delete this? This will be permanently deleted.')" style="display: inline;">
                         @csrf
                         @method('DELETE')
