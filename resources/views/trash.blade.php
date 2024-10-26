@@ -24,15 +24,14 @@
         </ul>
     </nav>
 
+ 
     <div class="container">
         <header class="logo">
-            <a href="{{ route('showAll') }}">
-                <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
-            </a>
-        </header>
-
-        <h1>Trash Bin</h1>
-
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
+                </a>
+                <h1>Trash Bin</h1>
+        </header>        
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @elseif(session('error'))

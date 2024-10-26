@@ -38,24 +38,26 @@
             <a href="{{ route('showAll') }}">
                 <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
             </a>
+
+            <h1>Create Note</h1>
         </header>
         
         <a href="{{ route('showAll') }}" class="home-button" aria-label="Go back"><i class="fa-solid fa-circle-left"></i></a>
 
         <main>
-            <h1>Create Note</h1>
+
             <form action="{{ route('storeNote') }}" method="POST"> 
                 @csrf 
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" id="title" name="title" required class="input-title">
+                    <input type="text" id="title" name="title" class="input-title" required>
                 </div>
                 <div class="form-group"> 
                     <label for="content">Content</label>
                     <textarea id="content" name="content" rows="6" required></textarea>
                 </div>
-                <div class="button-group">
-                    <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">Create Note</button>
+                <div class="button-group-1">
+                    <button type="submit" id="create-btn" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">Create Note</button>
                     <a href="{{ route('showAll') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
                 </div>
             </form>

@@ -49,25 +49,32 @@ textarea {
     flex-grow: 1;
     background-color: #b3e5fc; 
     color: #333;
-    width: calc(100% - 20px); 
-    max-width: 100%;
+    height: auto;
+    width: calc(100% - 20%); 
     padding: 10px; 
-    margin: 10px;
+    margin: 10px 0;
     border: 1px solid #81d4fa; 
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
     transition: border-color 0.3s;
 }
 
+.input-title{
+    max-width: 100%;
+}
+
 textarea {
-    width: 100%; 
-    padding: 10px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     resize: vertical;
     margin: 0; 
-    max-width: calc(100% - 20px);
+}
+
+.button-group-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input[type="text"]:focus,
@@ -78,7 +85,7 @@ textarea:focus {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.form-group-1 {
+.form-group {
     display: block;
     align-items: center;
     text-align: center;
@@ -86,7 +93,7 @@ textarea:focus {
 }
 
 .form-group-2 {
-    display: flex;
+    display: block;
     align-items: center;
     text-align: center;
     justify-content: space-between;
@@ -456,8 +463,16 @@ form {
     color: #000; 
 }
 
+header, h1{
+    box-sizing: border-box;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+}
+
 .logo {
-    position: absolute;
     top: 20px;
     left: 20px;
     display: flex;
@@ -517,6 +532,17 @@ form {
 }
 
 @media (max-width: 800px) {
+
+    .header> .logo, h1{
+        justify-content: center;
+        row-gap: inherit;
+        margin-right: 10px;
+    }
+    .logo{        
+        margin-right: 10px;
+        padding-right: 1em;
+    }
+
     .container {
         margin: 10px; 
         padding: 10px; 
