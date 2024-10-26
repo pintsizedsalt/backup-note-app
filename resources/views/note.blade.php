@@ -41,6 +41,7 @@
         </header>
         <main>
             <article class="notes card">
+            <div class="text">
                 <div class="note-timestamps" style="font-size: 0.8em; color: gray;">
                     <div>Updated: {{ $note->updated_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ] ') }}</div>
                 </div>
