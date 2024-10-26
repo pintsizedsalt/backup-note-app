@@ -37,17 +37,6 @@
         <h1>Bookmarks</h1>
     </header>
 
-    <section class="create-note-wrapper">
-        <form action="{{ route('createNote') }}" method="GET" class="create-note-form">
-            <button type="submit" style="font-family: 'Courier New', Courier, monospace;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                </svg> 
-                <span class="create-text">Create</span>
-            </button>
-        </form>
-    </section>
-
     <section class="search-section">
         <form action="{{ route('showBookmarkedNotes') }}" method="GET" class="search-form">
             <label class="search-label">
