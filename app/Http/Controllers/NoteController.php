@@ -105,10 +105,6 @@ class NoteController extends Controller
         }
 
         $note->delete();
-        
-        if ($note->is_bookmarked) {
-            return redirect()->route('showBookmarkedNotes')->with('success', 'Note deleted successfully from bookmarks');
-        }
 
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
@@ -171,8 +167,6 @@ class NoteController extends Controller
         Note::onlyTrashed()->whereIn('id', $noteIds)->forceDelete();
         return redirect()->route('showTrash')->with('success', 'Selected notes deleted permanently.');
     }
-
-
 
     public function emptyTrash()
     {
