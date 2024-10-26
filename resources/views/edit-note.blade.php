@@ -38,12 +38,14 @@
             <a href="{{ route('showAll') }}">
                 <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
             </a>
-        </header>
 
         <a href="{{ url()->previous() }}" class="home-button" aria-label="Go back"><i class="fa-solid fa-circle-left"></i></a>
         
+        <h1>Edit Note</h1>
+
+        </header>
         <main>
-            <h1>Edit Note</h1>
+            
             <form action="{{ route('updateNote', ['id' => $note->id])}}" method="POST"> 
                 @method("PUT")
                 @csrf 
@@ -51,9 +53,15 @@
                     <label for="title">Title</label>
                     <input value="{{$note->title}}" type="text" id="title" name="title" required class="input-title">
                 </div>
+
                 <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description" rows="1" class="input-description" required>{{ $note->description }}</textarea>
+                </div>
+
+                <div class="form-group"> 
                     <label for="content">Content</label>
-                    <textarea id="content" name="content" rows="5" required style="width: 100%;">{{$note->content}}</textarea>
+                    <textarea id="content" name="content" rows="6" required></textarea>
                 </div>
 
                 <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">

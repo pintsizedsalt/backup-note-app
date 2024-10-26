@@ -29,17 +29,17 @@
             <a href="{{ route('showAll') }}">
                 <img src="{{ asset('images/datadump.png') }}" alt="Data Dump Logo" class="logo-img">
             </a>
-        </header>
+            <h1>My Note</h1>
 
         <a href="{{ route('showAll') }}" class="home-button"><i class="fa-solid fa-circle-left"></i></a>
-
+        </header>
         <main>
-            <h1>My Note</h1>
             <article class="note">
                 <div class="note-timestamps" style="font-size: 0.8em; color: gray;">
                     <div>Updated: {{ $note->updated_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ] ') }}</div>
                 </div>
                 <h2 class="note-title">{{ $note->title }}</h2>
+                <p class="note-content-view">{{ $note->description }}</p>
                 <p class="note-content-view">{{ $note->content }}</p>
                 <div class="bookmark-container">
                     <form action="{{ route('toggleBookmark', ['id' => $note->id]) }}" method="POST">

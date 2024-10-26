@@ -76,6 +76,7 @@
                             <label>
                                 <input type="checkbox" name="note_ids[]" value="{{ $note->id }}" class="note-checkbox">
                                 <h3 class="note-title">{{ $note->title }}</h3>
+                                <p class="note-content">{{ $note->description }}</p>
                                 <p class="note-content">{{ Str::limit($note->content, 100, '...') }}</p>
                             </label>
                             <hr>

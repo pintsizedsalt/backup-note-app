@@ -36,11 +36,13 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
             'content' => 'required|string|max:10000'
         ]);
 
         $note = new Note();
         $note->title = $validated['title'];
+        $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();
 
@@ -73,6 +75,7 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
             'content' => 'required|string|max:10000'
         ]);
 
@@ -83,6 +86,7 @@ class NoteController extends Controller
         }
 
         $note->title = $validated['title'];
+        $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();
 

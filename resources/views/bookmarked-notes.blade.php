@@ -24,13 +24,12 @@
     </nav>
 
     <main class="container">
-        <div class="logo">
+        <header class="logo">
             <a href="{{ route('showAll') }}">
                 <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
             </a>
-        </div>
-        
-        <h1>Bookmarks</h1>
+            <h1>Bookmarks</h1>
+        </header>
 
         <section class="search-section">
             <form action="{{ route('showBookmarkedNotes') }}" method="GET" class="search-form">
@@ -58,6 +57,7 @@
                     <article class="note">
                         <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
                             <h3 style="font-weight: bold; font-size: 20px;">{{ $note->title }}</h3>
+                            <p class="note-content">{{ $note->description }}</p>
                             <p class="note-content">{{ $note->content }}</p>
                         </a>
                         <hr>

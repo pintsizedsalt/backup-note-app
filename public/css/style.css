@@ -222,6 +222,28 @@ form {
     transform: scale(1.05); 
 }
 
+.btn-homepage-1 {
+    background-color: #0288d1; 
+    color: #ffffff;
+    padding: 15px 20px;
+    max-width: fit-content;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    flex: 1 1 120px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.3s; 
+    font-weight: bold; 
+    margin: 0 5px;
+}
+
+.btn-homepage-1:hover {
+    background-color: #ffb4d2; 
+    transform: scale(1.05); 
+}
+
 .button-group {
     display: flex;
     justify-content: flex-end;
@@ -256,7 +278,6 @@ form {
     position: absolute;
     top: 0; 
     right: 0;
-    margin: 10px;
     color: #0288d1;
     margin: 30px 30px;
     border: none;
@@ -489,7 +510,7 @@ header, h1{
 }
 
 .logo:hover .logo-img {
-    transform: scale(1.26); 
+    transform: scale(1.05); 
 }
 
 .no-notes {
@@ -577,6 +598,15 @@ header, h1{
         height: 40px;
         font-size: 23px; 
         margin: auto;
+    }
+
+    .btn-homepage-1 {
+        font-size: 100%;
+        text-align: center;
+        align-items: center;
+        height: 35px;
+        padding: 10px;
+        margin: 0;
     }
     
     .btn-homepage {

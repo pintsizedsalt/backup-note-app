@@ -25,7 +25,7 @@
     </nav>
     
     <main class="container">
-        <div class="logo">
+        <header class="logo">
             <a href="{{ route('showAll') }}">
                 <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
             </a>
@@ -33,6 +33,15 @@
 
         <h1>My Notes</h1>
 
+        <section class="create-note-wrapper">
+            <form action="{{ route('createNote') }}" method="GET" class="create-note-form">
+                <button type="submit" class="btn-homepage-1" style="font-family: 'Courier New', Courier, monospace;">
+                    <i class="fa-solid fa-plus"></i> <span class="create-text btn-homepage">Create</span>
+                </button>
+            </form>
+        </section>
+        
+        </header>
         <section class="search-section">
             <form action="" method="GET" class="search-form">
                 <div class="form-group-2">
@@ -57,16 +66,6 @@
             </section>
         @endif
 
-        @if(empty($search))
-        <section class="create-note-wrapper">
-            <form action="{{ route('createNote') }}" method="GET" class="create-note-form">
-                <button type="submit" class="btn-homepage" style="font-family: 'Courier New', Courier, monospace;">
-                    <i class="fa-solid fa-plus"></i> <span class="create-text">Create</span>
-                </button>
-            </form>
-        </section>
-        @endif
-
         @if(!$notes->isEmpty())
             <section class="notes-list">
                 @foreach ($notes as $note)
@@ -77,6 +76,7 @@
                         
                         <a href="{{ route('showNote', ['id' => $note->id]) }}" style="text-decoration: none; color: inherit;">
                             <h2 style="font-weight: bold; font-size: 20px;">{{ $note->title }}</h2>
+                            <p class="note-content">{{ Str::limit($note->description, 100, '...') }}</p>
                             <p class="note-content">{{ Str::limit($note->content, 100, '...') }}</p>
                         </a>
                         
