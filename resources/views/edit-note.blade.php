@@ -5,16 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Note</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .input-title {
-            width: 300px; 
-            max-width: 100%;
-        }
-        .form-group {
-            margin-bottom: 15px; 
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -27,16 +19,16 @@
 
     <nav class="drawer">
         <ul>
-            <li><a href="{{ route('showAll') }}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>My Notes</a></li>
+            <li><a href="{{ route('showAll') }}" class="nav-link" id="bold"><svg id="iconn" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg> My Notes</a></li>
             <li>
-                <a href="{{ route('showBookmarkedNotes') }}" class="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                <a href="{{ route('showBookmarkedNotes') }}" class="nav-link" id="bold">
+                    <svg id="iconn" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
                         <path d="m389-400 91-55 91 55-24-104 80-69-105-9-42-98-42 98-105 9 80 69-24 104ZM200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/>
                     </svg>
                     Bookmarks
                 </a>
             </li>
-            <li><a href="{{ route('showTrash') }}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>Trash Bin</a></li>
+            <li><a href="{{ route('showTrash') }}" class="nav-link" id="bold"><svg id="iconn" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>Trash Bin</a></li>
         </ul>
     </nav>
 
@@ -47,8 +39,9 @@
             </a>
 
             <h1>Edit Note</h1>
-
-            <a href="{{ url()->previous() }}" class="home-button" aria-label="Go back"><i class="fa-solid fa-circle-left"></i></a>
+            <div class="back-home">
+            <a href="{{ route('showAll') }}" class="home-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M760-200v-160q0-50-35-85t-85-35H273l144 144-57 56-240-240 240-240 57 56-144 144h367q83 0 141.5 58.5T840-360v160h-80Z"/></svg>
+            </a></div>
         </header>
         
         <main>
@@ -80,4 +73,9 @@
     </div>
 
 </body>
+
+        <footer class="main-footer">
+            <p>© {{ date('Y') }} DataDump | BSIS 2 1st Sem Midterm Project | All Rights Reserved</p>
+            <p>Developed by Shandi and Salt</p>
+        </footer>
 </html>
