@@ -31,14 +31,14 @@
         </ul>
     </nav>
     
-    <main class="container">
+    <main class="container section1 ">
         <header class="logo">
-            <a href="{{ route('showAll') }}">
-                <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
-            </a>
-        </div>
-
-        <h1>My Notes</h1>
+    
+                <a href="{{ route('showAll') }}">
+                    <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
+                </a>
+                <h1>My Notes</h1>
+           
 
         <section class="create-note-wrapper">
             <form action="{{ route('createNote') }}" method="GET" class="create-note-form">

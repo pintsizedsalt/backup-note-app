@@ -66,7 +66,7 @@
                 
                 <div class="notes-cards-container">
                     @foreach ($notes as $note)
-                        <article class="note card" data-note-id="{{ $note->id }}">
+                        <article class="note card " data-note-id="{{ $note->id }}">
                             <label class="custom-checkbox">
                                 <input type="checkbox" class="note-checkbox" name="note_ids[]" value="{{ $note->id }}">
                                 <span class="checkmark"></span>
