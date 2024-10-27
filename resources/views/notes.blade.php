@@ -33,12 +33,17 @@
     
     <main class="container section1 ">
         <header class="logo">
-    
-                <a href="{{ route('showAll') }}">
-                    <img src="{{ asset('images/datadump.png') }}" alt="DataDump Logo" class="logo-img">
-                </a>
-                <h1>My Notes</h1>
-        
+            <a href="{{ route('showAll') }}" type="button" class="btn1" style="text-decoration: none;">
+            <strong src="{{ asset('images/datadump.png') }}">DataDump</strong>
+            <div id="container-stars">
+                <div id="stars"></div>
+            </div>
+
+            <div id="glow">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            </a>
         </header>
 
         <section class="create-note-wrapper">
