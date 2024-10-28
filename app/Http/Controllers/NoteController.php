@@ -105,13 +105,12 @@ class NoteController extends Controller
             Log::info("Deleting a bookmarked note: " . $note->title);
         }
 
-        if ($request->input('from') === 'bookmarks') {
-            return redirect()->route('showBookmarkedNotes')->with('success', 'Note deleted successfully');
-        }
-
         $note->delete();
 
-        return redirect()->route('showAll')->with('success', 'Note deleted successfully');
+        session()->flash('message', 'Note moved to the trash bin.');
+            
+        return redirect()->route('showAll')->with('success', 'Note deleted successfully.'); // Default redirect to notes page
+
     }
 
     public function toggleBookmark(Request $request)
@@ -128,7 +127,6 @@ class NoteController extends Controller
 
         return back();  
     }
-
 
     public function showBookmarkedNotes(Request $request)
     {

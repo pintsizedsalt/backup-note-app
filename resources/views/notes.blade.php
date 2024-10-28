@@ -32,6 +32,13 @@
     </nav>
     
     <main class="container section1 ">
+
+        @if(session('message'))
+            <div id="success-message" class="fade-out">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <header class="logo">
             <a href="{{ route('showAll') }}" type="button" class="btn1" style="text-decoration: none;">
             <strong src="{{ asset('images/datadump.png') }}">DataDump</strong>
@@ -90,8 +97,8 @@
                     <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
                     </div>
                         <span>{{ $note->title }}</span>
-                        <p class="subtitle">{{ Str::limit($note->description, 60, '...') }}</p>
-                        <p class="subtitle">{{ Str::limit($note->content, 30, '...') }}</p>
+                        <p class="subtitle">{{ Str::limit($note->description, 100, '...') }}</p>
+                        <p class="subtitle">{{ Str::limit($note->content, 200, '...') }}</p>
                     </div>
                 </a>
             @endforeach
@@ -105,6 +112,14 @@
                     document.getElementById('search').focus(); 
                 }
             });
+            window.onload = function() {
+                const message = document.getElementById('success-message');
+                if (message) {
+                    setTimeout(() => {
+                        message.classList.add('hide');
+                    }, 700);
+                }
+            }
         </script>
     </main>
 </body>

@@ -41,7 +41,7 @@
             <a href="{{ route('showAll') }}" class="home-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M760-200v-160q0-50-35-85t-85-35H273l144 144-57 56-240-240 240-240 57 56-144 144h367q83 0 141.5 58.5T840-360v160h-80Z"/></svg></a>
         </header>
         <main>
-            <article class="notes card">
+            <article class="notes card1">
             <div class="text">
                 <div class="note-timestamps" style="font-size: 0.8em; color: gray;">
                     <div>Updated: {{ $note->updated_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ] ') }}</div>
@@ -52,7 +52,7 @@
                 <div class="bookmark-container">
                     <form action="{{ route('toggleBookmark', ['id' => $note->id]) }}" method="POST">
                         @csrf
-                        <button type="submit" style="font-family: 'Courier New', Courier, monospace;">
+                        <button type="submit">
                             @if ($note->is_bookmarked)
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m389-400 91-55 91 55-24-104 80-69-105-9-42-98-42 98-105 9 80 69-24 104ZM200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg>
                             @else
@@ -66,7 +66,7 @@
                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg></button>
                     </form>
 
-                    <form action="{{ route('deleteNote', ['id' => $note->id, 'from' => 'bookmarks']) }}" method="POST">
+                    <form action="{{ route('deleteNote', ['id' => $note->id]) }}" method="POST">
                         @method("DELETE")
                         @csrf 
                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>

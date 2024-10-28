@@ -55,6 +55,9 @@
             <main class="trash-notes">
                 <section>
                 <div class="button-group-trash" style="display: flex; gap: 10px; align-items: center;">
+
+                    <button id="select-all-button" type="button">Select All</button>
+
                     <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
                         @csrf
                         @method('DELETE')
@@ -88,8 +91,8 @@
                                         <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
                                     </div>
                                     <span>{{ $note->title }}</span>
-                                    <p class="subtitle">{{ Str::limit($note->description, 60, '...') }}</p>
-                                    <p class="subtitle">{{ Str::limit($note->content, 30, '...') }}</p>
+                                    <p class="subtitle">{{ Str::limit($note->description, 100, '...') }}</p>
+                                    <p class="subtitle">{{ Str::limit($note->content, 200, '...') }}</p>
                                 </div>
                             <hr>
                         </article>
@@ -108,6 +111,7 @@
             const deleteForm = document.getElementById('delete-selected-form');
             const restoreButton = document.getElementById('restore-selected-button');
             const restoreContainer = document.getElementById('restore-notes-container');
+            const selectAllButton = document.getElementById('select-all-button');
 
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
@@ -136,6 +140,19 @@
                 });
             });
 
+            document.addEventListener('DOMContentLoaded', () => {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(alert => {
+                    setTimeout(() => {
+                        alert.classList.add('fade-out');
+                        alert.addEventListener('transitionend', () => {
+                            alert.remove();
+                        });
+                    }, 800);
+                });
+            });
+
+
             deleteButton.addEventListener('click', () => {
                 const selectedNotes = Array.from(checkboxes)
                     .filter(cb => cb.checked)
@@ -154,6 +171,17 @@
                     alert("Please select at least one note to delete.");
                 }
             });
+
+            selectAllButton.addEventListener('click', () => {
+                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                checkboxes.forEach(cb => {
+                    cb.checked = !allChecked; 
+                    cb.dispatchEvent(new Event('change')); 
+                });
+                deleteButton.style.display = !allChecked ? 'block' : 'none';
+                restoreButton.style.display = !allChecked ? 'block' : 'none';
+            });
+
         </script>
 
     </div>

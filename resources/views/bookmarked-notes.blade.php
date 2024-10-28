@@ -75,8 +75,8 @@
                     <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
                     </div>
                         <span>{{ $note->title }}</span>
-                        <p class="subtitle">{{ Str::limit($note->description, 60, '...') }}</p>
-                        <p class="subtitle">{{ Str::limit($note->content, 30, '...') }}</p>
+                        <p class="subtitle">{{ Str::limit($note->description, 100, '...') }}</p>
+                        <p class="subtitle">{{ Str::limit($note->content, 200, '...') }}</p>
                     </div>
                 </a>
             @endforeach
