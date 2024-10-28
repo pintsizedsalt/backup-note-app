@@ -136,19 +136,57 @@ class NoteController extends Controller
 
         $query = Note::query()->where('is_bookmarked', true);
 
-        if (!empty($search)) {
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'LIKE', "%$search%")
-                ->orWhere('description', 'LIKE', "%$search%")
-                ->orWhere('content', 'LIKE', "%$search%");
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%")
+                    ->orWhere('content', 'LIKE', "%$search%");
             });
         }
 
         $notes = $query->orderBy('created_at', 'desc')->get();
-        $noNotesMessage = $notes->isEmpty() && empty($search) ? "You don't have any bookmarked notes yet." : null;
+
+        $noNotesMessage = $notes->isEmpty() ? "No notes found." : null;
 
         return view('bookmarked-notes', ['notes' => $notes, 'search' => $search, 'noNotesMessage' => $noNotesMessage]);
     }
+
+    public function showBookmarkedNote(Request $request)
+    {
+        $note = Note::find($request->id);
+
+
+        if (!$note) {
+            return redirect()->route('showBookmarkedNotes')->with('error', 'Note not found.');
+        }
+
+
+        return view('bookmarked-note', ['note' => $note]);
+       
+        }
+
+        public function deleteBookmarkedNote(Request $request)
+        {
+            $note = Note::find($request->id);
+           
+            if (!$note) {
+                return redirect()->route('showBookmarkedNotes')->with('error', 'Note not found.');
+            }
+        
+        
+            if ($note->is_bookmarked) {
+                Log::info("Deleting a bookmarked note: " . $note->title);
+            }
+        
+        
+            $note->delete(); //
+        
+        
+            session()->flash('message', 'Note moved to the trash bin.');
+        
+        
+            return redirect()->route('showBookmarkedNotes')->with('success', 'Note deleted successfully.');
+        }        
 
     public function showTrash()
     {

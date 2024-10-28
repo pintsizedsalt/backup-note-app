@@ -30,6 +30,10 @@ Route::delete('/notes-trash/empty', [NoteController::class, 'emptyTrash'])->name
 
 Route::post('/notes-trash/restore', [NoteController::class, 'restoreSelectedNotes'])->name('restoreSelectedNotes');
 
+Route::delete('/notes/delete/bookmarknote', [NoteController::class, 'deleteBookmarkedNote'])->name('deleteBookmarkedNote');
+
+Route::get('/notes/show/bookmarknote', [NoteController::class, 'showBookmarkedNote'])->name('showBookmarkedNote');
+
 
 //Requirements
 //Note Resource, User Resource
