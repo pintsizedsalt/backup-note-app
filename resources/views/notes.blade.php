@@ -93,9 +93,9 @@
             @foreach ($notes as $note)
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" class="card" style="text-decoration: none; color: inherit;"> 
                     <div class="text">
-                    <div class="note-timestamps" style="font-size: 10px; color: gray;">
-                    <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
-                    </div>
+                        <div class="note-timestamps" style="font-size: 10px; color: gray;">
+                        <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
+                        </div>
                         <span>{{ $note->title }}</span>
                         <p class="subtitle">{{ Str::limit($note->description, 100, '...') }}</p>
                         <p class="subtitle">{{ Str::limit($note->content, 200, '...') }}</p>

@@ -64,12 +64,33 @@
                     <div class="form-group"> 
                         <label for="content">Content:</label>
                         <textarea id="content" name="content" rows="6" required></textarea>
+                        <div id="error-message" class="error-message">You have exceeded the maximum characters!</div>
                     </div>
                     <button class="form-submit-btn" type="submit">Create Note</button>
                 </form>
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const content = document.getElementById('content');
+            const errorMessage = document.getElementById('error-message');
+            const createButton = document.querySelector('.form-submit-btn');
+            const maxCharacters = 10000;
+
+            content.addEventListener('input', function () {
+                if (content.value.length > maxCharacters) {
+                    errorMessage.style.display = 'block';
+                    createButton.disabled = true;
+                } else {
+                    errorMessage.style.display = 'none';
+                    createButton.disabled = false; 
+                }
+            });
+        });
+    </script>
+
 
 </body>
 
