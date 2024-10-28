@@ -81,7 +81,7 @@
                 
                 <section class="notes-list">
                     @foreach ($notes as $note)
-                        <article class="note card" data-note-id="{{ $note->id }}">
+                        <article class="card" data-note-id="{{ $note->id }}">
                             <label class="custom-checkbox">
                                 <input type="checkbox" class="note-checkbox" name="note_ids[]" value="{{ $note->id }}">
                                 <span class="checkmark"></span>
@@ -150,7 +150,6 @@
                     }, 800);
                 });
             });
-
 
             deleteButton.addEventListener('click', () => {
                 const selectedNotes = Array.from(checkboxes)

@@ -89,7 +89,7 @@
             </section>
         @endif
         @if(!$notes->isEmpty())
-        <section class="notes-list">
+        <section class="notes-list1">
             @foreach ($notes as $note)
                 <a href="{{ route('showNote', ['id' => $note->id]) }}" class="card" style="text-decoration: none; color: inherit;"> 
                     <div class="text">

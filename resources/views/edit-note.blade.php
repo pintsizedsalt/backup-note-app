@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="{{ asset('images/datadump.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body>
@@ -53,16 +54,19 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input value="{{ $note->title }}" type="text" id="title" name="title" required class="input-title">
+                        <div id="title-error" class="error-message">Title exceeds the maximum characters!</div>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description:</label>
                         <input value="{{ $note->description }}" type="text" name="description" id="description" required class="input-description">
+                        <div id="description-error" class="error-message">Description exceeds the maximum characters!</div>
                     </div>
 
                     <div class="form-group"> 
                         <label for="content">Content</label>
                         <textarea id="content" name="content" rows="6" required>{{ $note->content }}</textarea>
+                        <<div id="content-error" class="error-message">Content exceeds the maximum characters!</div>
                     </div>
 
                     <button type="submit" class="form-submit-btn">
@@ -72,7 +76,68 @@
             </div>
         </main>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const title = document.getElementById('title');
+        const description = document.getElementById('description');
+        const content = document.getElementById('content');
+        const titleError = document.getElementById('title-error');
+        const descriptionError = document.getElementById('description-error');
+        const contentError = document.getElementById('content-error');
+        const createButton = document.querySelector('.form-submit-btn');
 
+        const maxTitleChars = 60;
+        const maxDescriptionChars = 100;
+        const maxContentChars = 10000;
+
+        titleError.style.display = 'none';
+        descriptionError.style.display = 'none';
+        contentError.style.display = 'none';
+
+        const showError = (errorElement) => {
+            errorElement.style.display = 'block';
+            errorElement.style.opacity = '1';
+
+            setTimeout(() => {
+                errorElement.style.opacity = '0'; 
+                setTimeout(() => {
+                    errorElement.style.display = 'none'; 
+                }, 500);
+            }, 2000);
+        };
+
+        const validateInputs = () => {
+            let isValid = true;
+
+            titleError.style.display = 'none';
+            descriptionError.style.display = 'none';
+            contentError.style.display = 'none';
+
+            if (title.value.length > maxTitleChars) {
+                showError(titleError);
+                isValid = false;
+            }
+
+            if (description.value.length > maxDescriptionChars) {
+                showError(descriptionError);
+                isValid = false;
+            }
+
+            if (content.value.length > maxContentChars) {
+                showError(contentError);
+                isValid = false;
+            }
+
+            return isValid;
+        };
+
+        createButton.addEventListener('click', (event) => {
+            if (!validateInputs()) {
+                event.preventDefault(); 
+            }
+        });
+    });
+    </script>
 </body>
 
         <footer class="main-footer">

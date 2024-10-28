@@ -67,7 +67,7 @@
             <a href="{{ route('showAll') }}" id="button" style="text-decoration: none;">Go to My Notes</a>
         </section>
     @else
-        <section class="notes-list">
+        <section class="notes-list1">
             @foreach ($notes as $note)
                 <a href="{{ route('showNote', ['id' => $note->id, 'from' => 'bookmarked']) }}" class="card" style="text-decoration: none; color: inherit;"> 
                     <div class="text">

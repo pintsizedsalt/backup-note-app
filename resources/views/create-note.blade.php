@@ -55,16 +55,18 @@
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" id="title" name="title" class="input-title" required>
+                        <div id="title-error" class="error-message">Title exceeds the maximum characters!</div>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description:</label>
                         <input type="text" name="description" id="description" rows="1" required></textarea>
+                        <div id="description-error" class="error-message">Description exceeds the maximum characters!</div>
                     </div>
                     <div class="form-group"> 
                         <label for="content">Content:</label>
                         <textarea id="content" name="content" rows="6" required></textarea>
-                        <div id="error-message" class="error-message">You have exceeded the maximum characters!</div>
+                        <<div id="content-error" class="error-message">Content exceeds the maximum characters!</div>
                     </div>
                     <button class="form-submit-btn" type="submit">Create Note</button>
                 </form>
@@ -73,25 +75,67 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const content = document.getElementById('content');
-            const errorMessage = document.getElementById('error-message');
-            const createButton = document.querySelector('.form-submit-btn');
-            const maxCharacters = 10000;
+    document.addEventListener('DOMContentLoaded', function () {
+        const title = document.getElementById('title');
+        const description = document.getElementById('description');
+        const content = document.getElementById('content');
+        const titleError = document.getElementById('title-error');
+        const descriptionError = document.getElementById('description-error');
+        const contentError = document.getElementById('content-error');
+        const createButton = document.querySelector('.form-submit-btn');
 
-            content.addEventListener('input', function () {
-                if (content.value.length > maxCharacters) {
-                    errorMessage.style.display = 'block';
-                    createButton.disabled = true;
-                } else {
-                    errorMessage.style.display = 'none';
-                    createButton.disabled = false; 
-                }
-            });
+        const maxTitleChars = 60;
+        const maxDescriptionChars = 100;
+        const maxContentChars = 10000;
+
+        titleError.style.display = 'none';
+        descriptionError.style.display = 'none';
+        contentError.style.display = 'none';
+
+        const showError = (errorElement) => {
+            errorElement.style.display = 'block';
+            errorElement.style.opacity = '1';
+
+            setTimeout(() => {
+                errorElement.style.opacity = '0'; 
+                setTimeout(() => {
+                    errorElement.style.display = 'none'; 
+                }, 500);
+            }, 2000);
+        };
+
+        const validateInputs = () => {
+            let isValid = true;
+
+            titleError.style.display = 'none';
+            descriptionError.style.display = 'none';
+            contentError.style.display = 'none';
+
+            if (title.value.length > maxTitleChars) {
+                showError(titleError);
+                isValid = false;
+            }
+
+            if (description.value.length > maxDescriptionChars) {
+                showError(descriptionError);
+                isValid = false;
+            }
+
+            if (content.value.length > maxContentChars) {
+                showError(contentError);
+                isValid = false;
+            }
+
+            return isValid;
+        };
+
+        createButton.addEventListener('click', (event) => {
+            if (!validateInputs()) {
+                event.preventDefault(); 
+            }
         });
-    </script>
-
-
+    });
+</script>
 </body>
 
         <footer class="main-footer">

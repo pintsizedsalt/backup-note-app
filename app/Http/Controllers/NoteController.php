@@ -36,8 +36,8 @@ class NoteController extends Controller
     public function storeNote(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            'title' => 'required|string|max:60',
+            'description' => 'required|string|max:100',
             'content' => 'required|string|max:10000'
         ]);
 
@@ -75,8 +75,8 @@ class NoteController extends Controller
     public function updateNote(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            'title' => 'required|string|max:60',
+            'description' => 'required|string|max:100',
             'content' => 'required|string|max:10000'
         ]);
 

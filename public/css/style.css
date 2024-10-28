@@ -681,6 +681,14 @@ form {
     margin: -10px;
 }
 
+.notes-list1 {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  margin-left: 10px;
+}
+
+
 #bold {
   color: #000;
   font-weight: bold;
@@ -699,7 +707,7 @@ form {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 10px;
+    margin: 10px 5px;
     padding: 0px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
@@ -729,6 +737,7 @@ form {
     border: 35px solid rgba(255, 255, 255, 0.102);
     transition: all .8s ease;
     filter: blur(.5rem);
+    pointer-events: none;
 }
 
 .card:hover::before {
@@ -1173,9 +1182,10 @@ main {
 .error-message {
   color: red;
   display: none; 
-  margin: 10px 15px;
+  margin: 5px 0 5px 15px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
-
 
 @media (max-width: 400px) {
     .home-button {
