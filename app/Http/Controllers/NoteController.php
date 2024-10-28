@@ -15,10 +15,12 @@ class NoteController extends Controller
         $query = Note::query();
 
         if ($search) {
-            $query->where('title', 'LIKE', "%$search%")
-                ->where('description', 'LIKE', "%$search%")
-                ->orWhere('content', 'LIKE', "%$search%");
-        }
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                      ->orWhere('description', 'LIKE', "%$search%")
+                      ->orWhere('content', 'LIKE', "%$search%");
+            });
+    }
         
         $notes = $query->orderBy('created_at', 'desc')->get();
         
@@ -131,24 +133,21 @@ class NoteController extends Controller
     public function showBookmarkedNotes(Request $request)
     {
         $search = $request->input('search', '');
-        
-        $bookmarkedNotes = Note::where('is_bookmarked', true);
 
-        if ($search) {
-            $bookmarkedNotes->where(function($query) use ($search) {
-                $query->where('title', 'LIKE', "%$search%")
-                    ->where('description', 'LIKE', "%$search%")
-                    ->orWhere('content', 'LIKE', "%$search%");
+        $query = Note::query()->where('is_bookmarked', true);
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%$search%")
+                ->orWhere('description', 'LIKE', "%$search%")
+                ->orWhere('content', 'LIKE', "%$search%");
             });
         }
 
-        $bookmarkedNotes = $bookmarkedNotes->orderBy('updated_at', 'desc')->get();
+        $notes = $query->orderBy('created_at', 'desc')->get();
+        $noNotesMessage = $notes->isEmpty() && empty($search) ? "You don't have any bookmarked notes yet." : null;
 
-        return view('bookmarked-notes', [
-            'notes' => $bookmarkedNotes,
-            'noNotesMessage' => $bookmarkedNotes->isEmpty() ? "No bookmarked notes found." : null,
-            'search' => $search,
-        ]);
+        return view('bookmarked-notes', ['notes' => $notes, 'search' => $search, 'noNotesMessage' => $noNotesMessage]);
     }
 
     public function showTrash()

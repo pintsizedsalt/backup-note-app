@@ -67,7 +67,7 @@
         </section>
 
         <section class="search-section">
-            <form action="" method="GET" class="search-form">
+            <form action="{{ route('showAll') }}" method="GET" class="search-form">
                 <label class="search-label">
                     <input type="search" name="search" id="search" placeholder="Search..." value="{{ $search }}" required class="input-title search-input">
                     <kbd class="slash-icon">/</kbd>

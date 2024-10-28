@@ -1188,8 +1188,8 @@ main {
 
 @media (max-width: 800px) {
   button {
-      font-size: 14px; /* Smaller font size on smaller screens */
-      padding: 0.5rem; /* Adjust padding for better fitting */
+      font-size: 14px;
+      padding: 0.5rem; 
   }
 }
 
