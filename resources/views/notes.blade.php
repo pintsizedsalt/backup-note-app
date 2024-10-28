@@ -59,7 +59,6 @@
             @endif
         </section>
 
-
         <section class="search-section">
             <form action="" method="GET" class="search-form">
                 <label class="search-label">

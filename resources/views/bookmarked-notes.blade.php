@@ -69,7 +69,7 @@
     @else
         <section class="notes-list">
             @foreach ($notes as $note)
-                <a href="{{ route('showNote', ['id' => $note->id]) }}" class="card" style="text-decoration: none; color: inherit;"> 
+                <a href="{{ route('showNote', ['id' => $note->id, 'from' => 'bookmarked']) }}" class="card" style="text-decoration: none; color: inherit;"> 
                     <div class="text">
                     <div class="note-timestamps" style="font-size: 10px; color: gray;">
                     <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>

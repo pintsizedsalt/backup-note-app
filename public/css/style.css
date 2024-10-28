@@ -67,7 +67,6 @@ label {
     content: ''; 
     display: block;
     height: 2px;
-    background-color: #4a148c;; 
     margin: -15px -15px 15px; 
     cursor: pointer;
 }
@@ -83,33 +82,6 @@ label {
     color: #b39ddb;
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.note-title {
-    font-weight: bold; 
-    font-size: 1.2em;
-    color: #000000; 
-    margin-top: 5px;
-    margin-bottom: 5px; 
-}
-
-.note-content {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin-left: 10px;
-    color: #333; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    display: -webkit-box; 
-    -webkit-box-orient: vertical; 
-    -webkit-line-clamp: 3; 
-}
-
-.note-content-view {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin-left: 10px;
-    color: #333; 
 }
 
 form {
@@ -137,10 +109,9 @@ form {
 }
 
 .button-group-trash {
-    display: flex;
+    display: inline;
     justify-content: flex-start;
     color: #000;
-    display: block;
     gap: 10px; 
     margin-top: 10px; 
     margin-bottom: 15px;
@@ -465,13 +436,13 @@ form {
 
   .custom-checkbox {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 0;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
     user-select: none;
-    font-size: 16px;
+    font-size: 10px;
     color: #4a148c;
     transition: color 0.3s;
   }
@@ -481,14 +452,13 @@ form {
   }
   
   .custom-checkbox .checkmark {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 2px solid #4a148c;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
     transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
     transform-style: preserve-3d;
   }
@@ -812,8 +782,11 @@ form {
 }
 
 .subtitle {
+    white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    overflow: hidden; 
+    text-overflow: ellipsis;
     font-size: 14px;
     font-weight: 300;
     color: rgba(0, 0, 0, 0.691);

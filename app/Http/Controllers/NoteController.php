@@ -16,10 +16,11 @@ class NoteController extends Controller
 
         if ($search) {
             $query->where('title', 'LIKE', "%$search%")
+                ->where('description', 'LIKE', "%$search%")
                 ->orWhere('content', 'LIKE', "%$search%");
         }
         
-        $notes = $query->get();
+        $notes = $query->orderBy('created_at', 'desc')->get();
         
         $noNotesMessage = $notes->isEmpty() ? "No notes found." : null;
 
@@ -104,12 +105,14 @@ class NoteController extends Controller
             Log::info("Deleting a bookmarked note: " . $note->title);
         }
 
+        if ($request->input('from') === 'bookmarks') {
+            return redirect()->route('showBookmarkedNotes')->with('success', 'Note deleted successfully');
+        }
+
         $note->delete();
 
         return redirect()->route('showAll')->with('success', 'Note deleted successfully');
     }
-
-
 
     public function toggleBookmark(Request $request)
     {
@@ -136,11 +139,12 @@ class NoteController extends Controller
         if ($search) {
             $bookmarkedNotes->where(function($query) use ($search) {
                 $query->where('title', 'LIKE', "%$search%")
+                    ->where('description', 'LIKE', "%$search%")
                     ->orWhere('content', 'LIKE', "%$search%");
             });
         }
 
-        $bookmarkedNotes = $bookmarkedNotes->get();
+        $bookmarkedNotes = $bookmarkedNotes->orderBy('updated_at', 'desc')->get();
 
         return view('bookmarked-notes', [
             'notes' => $bookmarkedNotes,
@@ -151,7 +155,7 @@ class NoteController extends Controller
 
     public function showTrash()
     {
-        $trashedNotes = Note::onlyTrashed()->get();
+        $trashedNotes = Note::onlyTrashed()->orderBy('deleted_at', 'desc')->get();
         return view('trash', ['notes' => $trashedNotes]);
     }
 

@@ -52,7 +52,8 @@
                 <a href="{{ route('showAll') }}" id="button" style="text-decoration: none;"> Go to My Notes</a>
             </section>
         @else
-            <section class="trash-notes notes-list">
+            <main class="trash-notes">
+                <section>
                 <div class="button-group-trash" style="display: flex; gap: 10px; align-items: center;">
                     <form action="{{ route('emptyTrash') }}" method="POST" onsubmit="return confirm('Are you sure you want to empty your trash bin? This will be permanently deleted.')" style="display: inline;">
                         @csrf
@@ -72,16 +73,18 @@
                         <button type="submit" id="restore-selected-button" style="display: none;">Restore</button>
                     </form>
                 </div>
+
+                </section>
                 
-                <div class="notes-cards-container">
+                <section class="notes-list">
                     @foreach ($notes as $note)
-                        <article class="note card " data-note-id="{{ $note->id }}">
+                        <article class="note card" data-note-id="{{ $note->id }}">
                             <label class="custom-checkbox">
                                 <input type="checkbox" class="note-checkbox" name="note_ids[]" value="{{ $note->id }}">
                                 <span class="checkmark"></span>
                             </label>
                                 <div class="text">
-                                    <div class="note-timestamps" style="font-size: 0.8em; color: gray;">
+                                    <div class="note-timestamps" style="font-size: 10px; color: gray;">
                                         <time datetime="{{ $note->created_at }}">{{ $note->created_at->setTimezone('Asia/Manila')->format('F j, Y  [ g:i a ]') }}</time>
                                     </div>
                                     <span>{{ $note->title }}</span>
@@ -91,12 +94,12 @@
                             <hr>
                         </article>
                     @endforeach
-                </div>
+                </section>
 
                 @if(session('warning'))
                     <div class="alert alert-warning">{{ session('warning') }}</div>
                 @endif
-            </section>
+            </main>
         @endif
 
         <script>
@@ -128,8 +131,8 @@
             document.querySelectorAll('.note').forEach(note => {
                 note.addEventListener('click', () => {
                     const checkbox = note.querySelector('.note-checkbox');
-                    checkbox.checked = !checkbox.checked; // Toggle the checkbox state
-                    checkbox.dispatchEvent(new Event('change')); // Trigger the change event
+                    checkbox.checked = !checkbox.checked; 
+                    checkbox.dispatchEvent(new Event('change')); 
                 });
             });
 
