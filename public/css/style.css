@@ -81,6 +81,7 @@ form {
     color: #000;
     margin-bottom: 30px;
     position: relative;
+    flex-wrap: wrap;
 }
 
 .home-button {
@@ -470,6 +471,8 @@ form {
   button{
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+    max-width: 100%;
     padding: 1rem;
     gap: 2px;
     font-size: 15px;
@@ -1026,10 +1029,6 @@ strong {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
-
-
-
-
   
   @keyframes wipeDown {
     0% {
@@ -1186,6 +1185,14 @@ main {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+
+@media (max-width: 800px) {
+  button {
+      font-size: 14px; /* Smaller font size on smaller screens */
+      padding: 0.5rem; /* Adjust padding for better fitting */
+  }
+}
+
 
 @media (max-width: 400px) {
     .home-button {
